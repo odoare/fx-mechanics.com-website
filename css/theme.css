@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+a {
+    color: #00bdf3;
+}
+a:hover {
+    color: #0082a7;
+}
+

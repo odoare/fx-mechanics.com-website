@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://perso.ensta-paris.fr/~doare/news/first/</loc>
+  </url><url>
+    <loc>http://perso.ensta-paris.fr/~doare/categories/</loc>
+  </url><url>
+    <loc>http://perso.ensta-paris.fr/~doare/news/</loc>
+  </url><url>
+    <loc>http://perso.ensta-paris.fr/~doare/</loc>
+  </url><url>
+    <loc>http://perso.ensta-paris.fr/~doare/tags/</loc>
+  </url>
+</urlset>
