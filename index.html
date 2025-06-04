@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
+  <style>
+  .center-iframe {
+    display: block; /* Makes the iframe a block-level element */
+    margin: 0 auto;  /* Centers the block-level element horizontally */
+    max-width: 600px; /* Optional: Set a max-width if you don't want it to stretch 100% */
+  }
+  </style>
+
 	<meta name="generator" content="Hugo 0.110.0">
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,7 +53,11 @@
     <li>
       <a href="#contact">Contact</a>
     </li>
-    
+<!-- <li>
+        <iframe style="border: 0; width: 50px; height: 50px;" src="https://bandcamp.com/EmbeddedPlayer/album=2948519735/size=tiny/bgcol=333333/linkcol=4ec5ec/tracklist=false/transparent=true/" seamless><a href="https://ynnmusic.bandcamp.com/album/h2o2">H2O2 de Y&#39;n&#39;N</a></iframe>
+
+</li> -->
+  
   </ul>
   
 </nav>
@@ -99,7 +111,9 @@
         </div>
         <div class="text-lg mt-3">
           <div>
-            <br /> <a href="#plugins">VST audio plugins for our daws</a>
+            <br /> <a href="#music">Music</a>
+            <br />
+            <br /> <a href="#plugins">Audio plugins</a>
             <br />
             <br /> <a href="#downloads">Downloads</a>
             <br />
@@ -108,28 +122,45 @@
           </div>
         </div>
       </div>
-      <div class="px-4 py-4">
-      <p style="text-align:center">
-      Our last album release &rarr; 
+    </section>
+    <section id="music" class="mt-12">
       <br>
-      Available on
       <br>
+      <div class="md:flex justify-center">
+        <div class="text-3xl title-deco tracking-wide">
+          Music
+        </div>
+      </div>
+
+        <div class="mt-8 grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+          <div class="w-full rounded overflow-hidden shadow-lg">
+            <div class="">
+              <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
+                <div class="flex justify-center">
+                    <div class="my-auto ml-2">
+                      Y'n'N
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:flex justify-center">
+        <div >
+          <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2948519735/size=large/bgcol=333333/linkcol=4ec5ec/tracklist=false/artwork=none/transparent=true/" seamless><a href="https://ynnmusic.bandcamp.com/album/h2o2">H2O2 de Y&#39;n&#39;N</a></iframe>
+        </div>
+        </div>
+      <!-- <iframe class="center-iframe" style="border: 0; width: 100%; height: 300px;" src="https://bandcamp.com/EmbeddedPlayer/album=2948519735/size=tiny/bgcol=333333/linkcol=4ec5ec/tracklist=false/transparent=true/" seamless><a href="https://ynnmusic.bandcamp.com/album/h2o2">H2O2 de Y&#39;n&#39;N</a></iframe> -->
+      <div align="center">
+      Our last album release is available on
       <a href="https://ynnmusic.bandcamp.com/album/h2o2" class="font-bold text-gray-600 text-base">Bandcamp</a>
-      <br>
       <a href="https://open.spotify.com/album/2gCFAoXuHvT4bPffULXAVK" class="font-bold text-gray-600 text-base">Spotify</a>
-      <br>
       <a href="https://www.deezer.com/fr/album/752442771" class="font-bold text-gray-600 text-base">Deezer</a>
-      <br>
       <a href="https://music.amazon.fr/albums/B0F7LGS1BR" class="font-bold text-gray-600 text-base">Amazon</a>
-      <br>
       <a href="https://www.youtube.com/playlist?list=OLAK5uy_mR5yHPJ1UyQCZnlyk0mllddfDm8zoplzQ" class="font-bold text-gray-600 text-base">Youtube music</a>
-      <br>
       and other streaming music platforms !
-      </p>
-      </div>
-      <div>
-      <iframe style="border: 0; width: 170px; height: 312px;" src="https://bandcamp.com/EmbeddedPlayer/album=2948519735/size=large/bgcol=333333/linkcol=4ec5ec/tracklist=false/transparent=true/" seamless><a href="https://ynnmusic.bandcamp.com/album/h2o2">H2O2 de Y&#39;n&#39;N</a></iframe>
-      </div>
+        </div>
     </section>
 
     <section id="plugins" class="mt-12">
@@ -330,6 +361,7 @@
         </div>
   
     </section>
+
 
     <!-- <section id="other" class="mt-12">
       <br>
