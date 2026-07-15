@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio plugins / FX-Mechanics</title>
+    <meta name="description" content="Free, open-source JUCE audio plugins by FX-Mechanics: effects, synths and studio tools." />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="player-bar">
+        <div class="player-bar-inner">
+          <button class="player-btn prev" type="button" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6l-8.5 6 8.5 6V6zM6 6h2v12H6z"/></svg>
+          </button>
+          <button class="player-btn play" type="button" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <button class="player-btn next" type="button" aria-label="Next track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6l8.5 6L6 18V6zM16 6h2v12h-2z"/></svg>
+          </button>
+          <div class="player-meta">
+            <div class="track">Reboot</div>
+            <div class="artist">Y'n'N — H2O2</div>
+          </div>
+          <div class="player-scrub">
+            <span class="player-time cur">0:00</span>
+            <input type="range" class="player-range" min="0" max="100" value="0" step="0.1" aria-label="Seek" />
+            <span class="player-time end">0:00</span>
+          </div>
+          <a class="player-link" href="https://ynnmusic.bandcamp.com/album/h2o2" target="_blank" rel="noopener">Full album ↗</a>
+          <audio id="fx-audio" preload="none"></audio>
+        </div>
+      </div>
+      <nav class="site-nav">
+        <a href="index.html" class="logo">FX<span class="dot">·</span>Mechanics</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-dropdown">
+            <a href="plugins.html" class="nav-link">Plugins</a>
+            <div class="nav-dropdown-panel">
+              <a href="plugins.html#effects"><span class="swatch" style="background:var(--cyan)"></span>Effects</a>
+              <a href="plugins.html#synths"><span class="swatch" style="background:var(--accent)"></span>Synths</a>
+              <a href="plugins.html#tools"><span class="swatch" style="background:var(--blue-strong)"></span>Tools</a>
+              <a href="plugins.html#archived"><span class="swatch" style="background:var(--text-faint)"></span>Old / Archived</a>
+            </div>
+          </li>
+          <li><a href="music.html" class="nav-link">Music</a></li>
+          <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section" style="padding-top: 56px;">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">Audio plugins</div>
+            <h1 class="section-title">Effects, synths &amp; tools</h1>
+            <p class="section-lede">
+              Free and open-source JUCE plugins for synthesis, spatial audio, rhythm
+              and studio utility ; built and maintained on GitHub.
+            </p>
+          </div>
+
+          <div class="category-block" id="coming-soon">
+            <div class="category-heading">
+              <h3>Coming soon</h3>
+              <span class="count">In development</span>
+            </div>
+            <p class="archived-note">
+              Plugins in active development: A tool for speaker systems calibration,
+              a glitch sequencer, a take spatializer, a tonnetz explorer...
+            </p>
+            <div class="teaser-grid">
+              <div class="teaser-item">
+                <img src="img/spread_teaser.png" alt="Spread — coming soon" loading="lazy" />
+              </div>
+              <div class="teaser-item">
+                <img src="img/mango_teaser.png" alt="Mango — coming soon" loading="lazy" />
+              </div>
+              <div class="teaser-item">
+                <img src="img/supermoto_teaser.png" alt="SuperMoTo — coming soon" loading="lazy" />
+              </div>
+              <div class="teaser-item">
+                <img src="img/neorix_teaser.png" alt="Neorix — coming soon" loading="lazy" />
+              </div>
+            </div>
+          </div>
+
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all" type="button">All</button>
+            <button class="filter-btn" data-filter="effects" type="button">Effects</button>
+            <button class="filter-btn" data-filter="synths" type="button">Synths</button>
+            <button class="filter-btn" data-filter="tools" type="button">Tools</button>
+            <button class="filter-btn" data-filter="archived" type="button">Old / Archived</button>
+          </div>
+
+          <div class="category-block" data-category="effects" id="effects">
+            <div class="category-heading">
+              <h3>Effects</h3>
+              <span class="count">4 plugins</span>
+            </div>
+            <div class="grid">
+
+              <div class="card">
+                <a class="card-media" href="img/AmbiRR2.png" target="_blank">
+                  <img src="img/AmbiRR2.png" alt="AmbiRR2 screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">AmbiRR2</div>
+                    <span class="card-tag effects">Effect</span>
+                  </div>
+                  <p class="card-text">
+                    AmbiRR2 places up to 16 mono sources in a virtual box-shaped room and renders
+                    the space as either a 1st-, 2nd- or 3rd-order ambisonic stream (AmbiX, ACN/SN3D)
+                    or a stereo recording from two virtual microphones with selectable polar patterns.
+                    It's a full rewrite of the earlier BiRR/AmbiRR with a realtime-safe, thread-aware
+                    architecture: the direct sound and early reflections come from an exact per-source
+                    image-source model, while the late reverberation is a single diffuse field shared
+                    by every source. Moving a source or the listener never rebuilds the impulse
+                    response, so both can be automated freely in the DAW.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/AmbiRR2" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/AmbiRR2/releases" target="_blank" rel="noopener">Download</a>
+                    <a href="files/AmbiRR2.pdf" target="_blank" rel="noopener">Manual</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/rhyga_screen.png" target="_blank">
+                  <img src="img/rhyga_screen.png" alt="RhyGa screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">RhyGa</div>
+                    <span class="card-tag effects">Effect</span>
+                  </div>
+                  <p class="card-text">
+                    RhyGa is a simple yet versatile rhythmic gate effect for your DAW. It creates
+                    tempo-synced patterns by modulating the volume of an incoming audio signal.
+                    With per-step controls for level, pan, duration and an auxiliary send, it turns
+                    static pads into pulsating rhythms, adds stutter effects on vocals, or dynamic
+                    movement to any track.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/RhyGa" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/RhyGa/releases" target="_blank" rel="noopener">Download</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/TripleDist_screen.png" target="_blank">
+                  <img src="img/TripleDist_screen.png" alt="TripleDist screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">Triple Dist</div>
+                    <span class="card-tag effects">Effect</span>
+                  </div>
+                  <p class="card-text">
+                    A filter/distortion plugin. The signal is split into three frequency bands
+                    (low, mid, high) via a state-variable filter. Each band is distorted and panned
+                    separately before being mixed back together, creating interesting spatialization
+                    effects as the cutoff frequency is varied.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/TripleDist" target="_blank" rel="noopener">GitHub</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/tear_0.3_screen.png" target="_blank">
+                  <img src="img/tear_0.3_screen.png" alt="TeAr screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">TeAr</div>
+                    <span class="card-tag effects">MIDI FX</span>
+                  </div>
+                  <p class="card-text">
+                    TeAr is an advanced polyrhythmic and polyphonic MIDI arpeggiator plugin. It
+                    features any number of independent arpeggiator engines, each with its own pattern,
+                    subdivision and MIDI output channel, enabling complex, evolving musical
+                    phrases and textures.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/TeAr" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/TeAr/releases" target="_blank" rel="noopener">Download</a>
+                    <a href="https://www.youtube.com/watch?v=__oc9Wncv1Y" target="_blank" rel="noopener">Demo video</a>
+                    <a href="https://www.youtube.com/watch?v=pWOuQep7nIs" target="_blank" rel="noopener">Tutorial</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="category-block" data-category="synths" id="synths">
+            <div class="category-heading">
+              <h3>Synths</h3>
+              <span class="count">4 plugins</span>
+            </div>
+            <div class="grid">
+
+              <div class="card">
+                <a class="card-media" href="img/mechanodd.png" target="_blank">
+                  <img src="img/mechanodd.png" alt="MechanOdd screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">MechanOdd</div>
+                    <span class="card-tag synths">Synth</span>
+                  </div>
+                  <p class="card-text">
+                    MechanOdd is a polyphonic physical-modelling synthesizer that synthesizes sound
+                    by exciting simulated mechanical resonators (strings, plates, membranes and
+                    beams) and routing the results through a feedback matrix, effects chains and a
+                    modulation engine. It's the new, more powerful and modular successor to StrinGO.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/MechanOdd" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/MechanOdd/releases" target="_blank" rel="noopener">Download</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/BlackWidowPhoto.png" target="_blank">
+                  <img src="img/BlackWidowPhoto.png" alt="Black Widow screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">Black Widow Drums</div>
+                    <span class="card-tag synths">Sampler</span>
+                  </div>
+                  <p class="card-text">
+                    The Black Widow Drums project is the first published drum sampler showcase for
+                    FxmeSampler's advanced spatial and processing features. Recorded on a Gretsch
+                    Black Widow kit, it uses an original microphone array and signal-processing
+                    chain to deliver a studio-ready drum sound.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/FxmeSampler" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/FxmeSampler/releases" target="_blank" rel="noopener">Download</a>
+                    <a href="https://www.youtube.com/watch?v=3gGJhpji6mE" target="_blank" rel="noopener">Demo video</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/image-in_screen.png" target="_blank">
+                  <img src="img/image-in_screen.png" alt="Image-In screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">Image-In</div>
+                    <span class="card-tag synths">Synth</span>
+                  </div>
+                  <p class="card-text">
+                    Image-In is a virtual instrument based on an image buffer read by oscillators
+                    that follow a path across the image. LFOs and envelopes can modulate the path,
+                    and user images can be imported for even more sonic possibilities.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/Image-In" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/Image-In/releases" target="_blank" rel="noopener">Download</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/lorenz_screen.png" target="_blank">
+                  <img src="img/lorenz_screen.png" alt="Lorenz screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">Lorenz</div>
+                    <span class="card-tag synths">Synth</span>
+                  </div>
+                  <p class="card-text">
+                    Lorenz is a unique software synthesizer that generates sound by simulating a
+                    modified version of the Lorenz attractor, a classic chaotic system. Instead of
+                    traditional oscillators, it uses the evolving state of the attractor to create
+                    complex, ever-changing, organic sounds.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/Lorenz" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/Lorenz/releases" target="_blank" rel="noopener">Pre-release download</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="category-block" data-category="tools" id="tools">
+            <div class="category-heading">
+              <h3>Tools</h3>
+              <span class="count">3 plugins</span>
+            </div>
+            <div class="grid">
+
+              <div class="card">
+                <a class="card-media" href="img/moto_screen.png" target="_blank">
+                  <img src="img/moto_screen.png" alt="MoTo screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">MoTo</div>
+                    <span class="card-tag tools">Tool</span>
+                  </div>
+                  <p class="card-text">
+                    MoTo (Monitoring Tool) sits after the master track in your DAW to mimic
+                    hardware monitor controllers. It lets you switch between four stereo outputs
+                    and has mute/dim/solo buttons. Designed with Reaper in mind, but useful in
+                    other DAWs too.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/MoTo" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/MoTo/releases" target="_blank" rel="noopener">Latest release</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/pbg_screen.png" target="_blank">
+                  <img src="img/pbg_screen.png" alt="PiWheeG screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">PiWheeG</div>
+                    <span class="card-tag tools">MIDI tool</span>
+                  </div>
+                  <p class="card-text">
+                    PiWheeG (Pitch Wheel Gate) is a MIDI effect plugin that fixes a common problem
+                    with some hardware MIDI keyboards whose pitch wheel doesn't return exactly to zero.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/PiWheeG" target="_blank" rel="noopener">GitHub</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <a class="card-media" href="img/flappychord_screenshot.png" target="_blank">
+                  <img src="img/flappychord_screenshot.png" alt="Flappy Chord screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">Flappy Chord</div>
+                    <span class="card-tag tools">Learning tool</span>
+                  </div>
+                  <p class="card-text">
+                    Flappy Chord is a simple prototype of a musical game that reimagines the classic
+                    "Flappy Bird" formula as a fun tool for learning music. The bird is controlled by
+                    playing notes and chords on a connected MIDI keyboard.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/FlappyChord" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/FlappyChord/releases" target="_blank" rel="noopener">Download</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="category-block" data-category="archived" id="archived">
+            <div class="category-heading">
+              <h3>Old / Archived</h3>
+              <span class="count">2 plugins</span>
+            </div>
+            <p class="archived-note">
+              No longer actively maintained. Kept available for projects that still depend
+              on them. For new work, use the recommended replacement instead.
+            </p>
+            <div class="grid">
+
+              <div class="card is-archived">
+                <a class="card-media" href="img/BiRR_screen.png" target="_blank">
+                  <img src="img/BiRR_screen.png" alt="BiRR screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">BiRR / AmbiRR</div>
+                    <span class="card-tag archived">Archived</span>
+                  </div>
+                  <p class="card-text">
+                    BiRR (and her ambisonic sister AmbiRR) were room simulators that emulated the
+                    sound produced by two monophonic sources perceived by a listener in a
+                    rectangular (2D) or parallelepipedic (3D) room, with adjustable room and
+                    source/listener positions, and stereo or first-order ambisonic output.
+                    Superseded by <a href="plugins.html#effects">AmbiRR2</a>, a full rewrite
+                    supporting up to 16 sources and 3rd-order ambisonic output: new projects
+                    should use that instead.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/BiRR" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/BiRR/releases" target="_blank" rel="noopener">Download</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card is-archived">
+                <a class="card-media" href="img/StrinGO_screen.png" target="_blank">
+                  <img src="img/StrinGO_screen.png" alt="StrinGO screenshot" loading="lazy" />
+                </a>
+                <div class="card-body">
+                  <div class="card-head">
+                    <div class="card-title">StrinGO</div>
+                    <span class="card-tag archived">Archived</span>
+                  </div>
+                  <p class="card-text">
+                    StrinGO is a virtual instrument based on coupled waveguide models. These
+                    waveguides can be excited by four kinds of exciters: an external input, a basic
+                    waveform oscillator, white noise, and a crackling sound generator.
+                    Superseded by <a href="plugins.html#synths">MechanOdd</a>, a more powerful and
+                    modular successor: new projects should use that instead.
+                  </p>
+                  <div class="card-links">
+                    <a href="https://github.com/odoare/StrinGO" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/odoare/StrinGO/releases" target="_blank" rel="noopener">Pre-release download</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>&copy; 2024–2026 Olivier Doaré</div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/player.js"></script>
+  </body>
+</html>

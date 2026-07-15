@@ -1,751 +1,122 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-  <style>
-  .center-iframe {
-    display: block; /* Makes the iframe a block-level element */
-    margin: 0 auto;  /* Centers the block-level element horizontally */
-    max-width: 600px; /* Optional: Set a max-width if you don't want it to stretch 100% */
-  }
-  </style>
-
-	<meta name="generator" content="Hugo 0.110.0">
     <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<link rel="stylesheet" href="css/index.css" />
-<link rel="stylesheet" href="css/navbar.css" />
-<link rel="stylesheet" href="css/theme.css" />
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
-
-<script type="text/javascript">
-    window.addEventListener('scroll', ()=>{
-        const nav = document.querySelector('nav')
-        nav.classList.toggle('onscroll', window.scrollY > 0)
-    })
-</script>
-    <title>FX-Mechanics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FX-Mechanics / Audio plugins &amp; music</title>
+    <meta name="description" content="FX-Mechanics: physical-modelling synths, spatial audio tools and DSP effects by Olivier Doaré, plus the music of Y'n'N." />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/site.css" />
   </head>
   <body>
-      <nav class="pl-4 md:pl-24">
-  <a href="http://fx-mechanics.com" class="logo">FX-Mechanics</a>
-  <ul class="hidden md:flex">
-    
-    <li>
-      <a href="#about">About</a>
-    </li>
-
-    <li>
-      <a href="#music">Music</a>
-    </li>
-    
-    <li>
-      <a href="#plugins">Audio plugins</a>
-    </li>
-
-    <li>
-      <a href="#downloads">Downloads</a>
-    </li>
-
-    <!-- <li>
-      <a href="#other">Other projects</a>
-    </li> -->
-    
-    <li>
-      <a href="#contact">Contact</a>
-    </li>
-<!-- <li>
-        <iframe style="border: 0; width: 50px; height: 50px;" src="https://bandcamp.com/EmbeddedPlayer/album=2948519735/size=tiny/bgcol=333333/linkcol=4ec5ec/tracklist=false/transparent=true/" seamless><a href="https://ynnmusic.bandcamp.com/album/h2o2">H2O2 de Y&#39;n&#39;N</a></iframe>
-
-</li> -->
-  
-  </ul>
-  
-</nav>
-<section class="banner"></section>
-
-      <div id="begin">
-    <div
-      id="mainBG"
-      style="background-image: url('img/anechoic.png');"
-      >
-      <div
-        class="wave wave1"
-        style="background-image: url('img/wave.png');"
-      ></div>
-      <div
-        class="wave wave2"
-        style="background-image: url('img/wave.png');"
-      ></div>
-      <div
-        class="wave wave3"
-        style="background-image: url('img/wave.png');"
-      ></div>
-      <div
-        class="wave wave4"
-        style="background-image: url('img/wave.png');"
-      ></div>
-      <div class="centerAll">
-        <div class="title text-6xl font-bold text-center">
-           
+    <header class="site-header">
+      <div class="player-bar">
+        <div class="player-bar-inner">
+          <button class="player-btn prev" type="button" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6l-8.5 6 8.5 6V6zM6 6h2v12H6z"/></svg>
+          </button>
+          <button class="player-btn play" type="button" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <button class="player-btn next" type="button" aria-label="Next track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6l8.5 6L6 18V6zM16 6h2v12h-2z"/></svg>
+          </button>
+          <div class="player-meta">
+            <div class="track">Reboot</div>
+            <div class="artist">Y'n'N / H2O2</div>
+          </div>
+          <div class="player-scrub">
+            <span class="player-time cur">0:00</span>
+            <input type="range" class="player-range" min="0" max="100" value="0" step="0.1" aria-label="Seek" />
+            <span class="player-time end">0:00</span>
+          </div>
+          <a class="player-link" href="https://ynnmusic.bandcamp.com/album/h2o2" target="_blank" rel="noopener">Full album ↗</a>
+          <audio id="fx-audio" preload="none"></audio>
         </div>
-        <div class="text text-xl text-center"> </div>
       </div>
-    </div>
-  
-  <main class="container mx-auto mt-8 px-4 xl:px-0">
+      <nav class="site-nav">
+        <a href="index.html" class="logo">FX<span class="dot">·</span>Mechanics</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-dropdown">
+            <a href="plugins.html" class="nav-link">Plugins</a>
+            <div class="nav-dropdown-panel">
+              <a href="plugins.html#effects"><span class="swatch" style="background:var(--cyan)"></span>Effects</a>
+              <a href="plugins.html#synths"><span class="swatch" style="background:var(--accent)"></span>Synths</a>
+              <a href="plugins.html#tools"><span class="swatch" style="background:var(--blue-strong)"></span>Tools</a>
+              <a href="plugins.html#archived"><span class="swatch" style="background:var(--text-faint)"></span>Old / Archived</a>
+            </div>
+          </li>
+          <li><a href="music.html" class="nav-link">Music</a></li>
+          <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <section id="about" class="md:flex justify-around">
-      <div class="my-auto md:mr-4">
-        <div class="text-3xl title-deco tracking-wide">
-          About
-        </div>
-        <br>
-        <img
-        class="text-center"
-        src="img/logo686.png"
-        />
+    <main>
+      <div class="chamber">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="wave wave4"></div>
       </div>
-      <div class="mt-4 md:mt-0 md:ml-4">
-        <div class="text-2xl font-bold">
-          <br /><br />FX-Mechanics
+
+      <section class="hero-content container">
+        <span class="eyebrow">Audio software &amp; experimental music</span>
+        <h1><span class="accent">Audio tools</span>, built from first principles.</h1>
+        <p>
+          FX-Mechanics = physical-modelling synths, spatial-audio tools and DSP-driven effects,
+          alongside music projects of Olivier Doaré.
+        </p>
+        <div class="hero-actions">
+          <a href="plugins.html" class="btn btn-primary">Browse plugins</a>
+          <a href="music.html" class="btn">Listen to the last Fx-Mechanics releases</a>
         </div>
-        <div class="text-lg mt-3">
+      </section>
+
+      <section id="about" class="section">
+        <div class="container about-grid">
+          <img src="img/logo686.png" alt="FX-Mechanics logo" />
           <div>
-            <br /> <a href="#music">Music</a>
-            <br />
-            <br /> <a href="#plugins">Audio plugins</a>
-            <br />
-            <br /> <a href="#downloads">Downloads</a>
-            <br />
-            <br /> <a href="#contact">Contact</a>
-            <br />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-    <section id="music" class="mt-12">
-      <br>
-      <br>
-      <div class="md:flex justify-center">
-        <div class="text-3xl title-deco tracking-wide">
-          Music
-        </div>
-      </div>
-
-      <br>
-
-        <div class="md:flex justify-center">
-        <div >
-          <img style="border: 0; width: 0%;" class="text-center" src="img/h2o2.jpg"/>
-          <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2948519735/size=large/bgcol=333333/linkcol=4ec5ec/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://ynnmusic.bandcamp.com/album/h2o2">H2O2 de Y&#39;n&#39;N</a></iframe>
-        </div>
-        </div>
-      <div align="center">
-      The last album release of Y'n'N is available on
-      <br>
-      <a href="https://ynnmusic.bandcamp.com/album/h2o2" class="font-bold text-gray-600 text-base">Bandcamp</a>
-      <br>
-      <a href="https://open.spotify.com/album/2gCFAoXuHvT4bPffULXAVK" class="font-bold text-gray-600 text-base">Spotify</a>
-      <br>
-      <a href="https://www.deezer.com/fr/album/752442771" class="font-bold text-gray-600 text-base">Deezer</a>
-      <br>
-      <a href="https://music.amazon.fr/albums/B0F7LGS1BR" class="font-bold text-gray-600 text-base">Amazon</a>
-      <br>
-      <a href="https://www.youtube.com/playlist?list=OLAK5uy_mR5yHPJ1UyQCZnlyk0mllddfDm8zoplzQ" class="font-bold text-gray-600 text-base">Youtube music</a>
-      <br>
-      and other music streaming platforms !
-      <br>
-        <br>
-        <a href="https://www.facebook.com/profile.php?id=61576118363634" class="font-bold text-gray-600 text-base"> Follow on Facebook </a>
-        <br>
-        <a href="https://www.instagram.com/y_n_n.music/" class="font-bold text-gray-600 text-base"> Follow on Instagram </a>
-      </div>
-    </section>
-
-    <section id="plugins" class="mt-12">
-      <div class="md:flex justify-center">
-        <div class="text-3xl title-deco tracking-wide">
-          Audio plugins
-        </div>
-      </div>
-
-        <div class="mt-8 grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    MechanOdd
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/mechanodd.png" target="img/mechanodd.png">
-              <img class="w-full" src="img/mechanodd.png" alt="MechanOdd screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-              MechanOdd is a polyphonic physical-modelling synthesizer plugin that
-              synthesizes sound by exciting simulated mechanical resonators
-              (strings, plates, membranes, and beams) and routing the results through a feedback
-              matrix, effects chains, and a modulation engine.
-
-              It is the new, improved version of StrinGO, more powerful, more modular.
-
-              </p>
-              <br>  
-              More info on                   
-              <a href ="https://github.com/odoare/MechanOdd" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/MechanOdd/releases" class="font-bold text-gray-600 text-base">
-                Download page
-              </a>
-            </div>
-          </div>
-
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    Black Widow Drums
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/BlackWidowPhoto.png" target="img/BlackWidowPhoto.png">
-              <img class="w-full" src="img/BlackWidowPhoto.png" alt="Black Widow screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-              The Black Widow Drums project is the first published drum sampler showcase
-              for FxmeSampler's advanced spatial and processing features. Recorded on a
-              Gretsch Black Widow kit, it utilizes an original microphone array and signal
-              processing chain to deliver a studio-ready drum sound.
-              </p>
-              <br>  
-              More info on                   
-              <a href ="https://github.com/odoare/FxmeSampler" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/FxmeSampler/releases" class="font-bold text-gray-600 text-base">
-                Download page
-              </a>
-              <br>
-              <br>
-              <a href = "https://www.youtube.com/watch?v=3gGJhpji6mE" class="font-bold text-gray-600 text-base">
-                Demo video
-              </a>
-            </div>
-          </div>
-
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    BiRR
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/BiRR_screen.png" target="img/BiRR_screen.png">
-              <img class="w-full" src="img/BiRR_screen.png" alt="BiRR screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-                    BiRR (and her ambisonic sister AmbiRR) are room simulators that accurately emulate the sound produced
-                    by two monophonic and omnidirectionnal sources perceived by a listener in a rectangular (2D)
-                    or parallelepipedic (3D) room.
-                    The dimensions (x,y,z) of the room can be adjusted, as well as the source and listener positions.
-                    The generated stereo output can simulate different microphone positions (XY, MS, with different angles),
-                    or a binaural receiver.
-                    <br><br>
-                    The ambisonic version (AmbiRR) produces a four channel first order ambisonic signal (Ambix/ACN).
-
-              </p>
-              <br>  
-              More info on                   
-              <a href ="https://github.com/odoare/BiRR" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/BiRR/releases" class="font-bold text-gray-600 text-base">
-                Download page
-              </a>
-            </div>
-          </div>
-
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    TeAr
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/tear_0.3_screen.png" target="img/tear_0.3_screen.png">
-              <img class="w-full" src="img/tear_0.3_screen.png" alt="TeAr screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-              TeAr is an advanced polyrhythmic and polyphonic MIDI arpeggiator plugin.
-              It features four independent arpeggiator engines, each with its own pattern,
-              subdivision, and MIDI output channel. This allows for the creation of complex,
-              evolving musical phrases and textures.
-              </p>
-              <br>  
-              More info on                   
-              <a href ="https://github.com/odoare/TeAr" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/TeAr/releases" class="font-bold text-gray-600 text-base">
-                Download page
-              </a>
-              <br>
-              <br>
-              <a href = "https://www.youtube.com/watch?v=__oc9Wncv1Y" class="font-bold text-gray-600 text-base">
-                Demo video
-              </a>
-
-              <br>
-              <a href = "https://www.youtube.com/watch?v=pWOuQep7nIs" class="font-bold text-gray-600 text-base">
-                Tutorial video
-              </a>
-
-            </div>
-          </div>
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    Image-In
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/image-in_screen.png" target="img/image-in_screen.png">
-              <img class="w-full" src="img/image-in_screen.png" alt="Image-In screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-                    Image-In is a virtual instrument plugin based
-                    on an image buffer read by oscillators that follow
-                    a path on the image. Various LFO and enveloppes
-                    can be used to modulate the path. It is possible to
-                    import user images for even more sonic possibilities.
-              </p>
-              <br>
-              More info on
-              <a href = "https://github.com/odoare/Image-In" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/Image-In/releases" class="font-bold text-gray-600 text-base">
-                Download page
-              </a>
-            </div>
-          </div>
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    RhyGa
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/rhyga_screen.png" target="img/rhyga_screen.png">
-              <img class="w-full" src="img/rhyga_screen.png" alt="RhyGa screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-              RhyGa is a simple yet versatile rhythmic gate effect for your DAW.
-              It allows us to create tempo-synced patterns by modulating the volume
-              of an incoming audio signal. With per-step controls for level, pan, duration,
-              and an auxiliary send, you can transform static pads into pulsating rhythms,
-              create complex stutter effects on vocals, or add dynamic movement to any track.
-              </p>
-              <br>  
-              More info on                   
-              <a href ="https://github.com/odoare/RhyGa" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/RhyGa/releases" class="font-bold text-gray-600 text-base">
-                Download page
-              </a>
-            </div>
-          </div>
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    Lorenz
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/lorenz_screen.png" target="img/lorenz_screen.png">
-              <img class="w-full" src="img/lorenz_screen.png" alt="Lorenz screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-                Lorenz is a unique software synthesizer plugin that generates sound by simulating a modified
-                version of the Lorenz attractor, a classic example of a chaotic system.
-                Instead of using traditional oscillators, it uses the evolving state of the attractor
-                to create complex, ever-changing, and organic sounds.
-              </p>
-              <br>  
-              More info on                   
-              <a href ="https://github.com/odoare/Lorenz" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/Lorenz/releases" class="font-bold text-gray-600 text-base">
-                Download a pre-release of the plugin
-              </a>
-            </div>
-          </div>
-
-
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    Flappy Chord
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/flappychord_screenshot.png" target="img/flappychord_screenshot.png">
-              <img class="w-full" src="img/flappychord_screenshot.png" alt="Flappy Chord screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-              Flappy Chord is a simple prototype of musical game that reimagines the classic
-              "Flappy Bird" formula as a fun tool for learning music. The bird is controlled
-              by playing notes and chords on a connected MIDI keyboard.
-              </p>
-              <br>  
-              More info on                   
-              <a href ="https://github.com/odoare/FlappyChord" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/FlappyChord/releases" class="font-bold text-gray-600 text-base">
-                Download page
-              </a>
-            </div>
-          </div>
-
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    StrinGO
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/StrinGO_screen.png" target="img/StrinGO_screen.png">
-              <img class="w-full" src="img/StrinGO_screen.png" alt="StrinGO screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-                    StrinGO is a virtual instrument based on coupled waveguide models.
-                    These waveguides can be excited by four kinds of exciters: an external input,
-                    a basic waveform oscillator, a white noise and a crackling sound generator.
-              </p>
-              <br>
-              More info on
-              <a href = "https://github.com/odoare/StrinGO" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <br>
-              <a href = "https://github.com/odoare/StrinGO/releases" class="font-bold text-gray-600 text-base">
-                Download a pre-release of the plugin
-              </a>
-            </div>
-          </div>
-
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    MoTo
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/moto_screen.png" target="img/moto_screen_screen.png">
-              <img class="w-half" src="img/moto_screen.png" alt="MoTo screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-                    MoTo (Monitoring Tool) is an effect tool that aims to be placed after the master track in daw in order to mimic harwarde monitoring controlers.
-                    It allows to select betwen four stereo outputs, has mute/dim/solo buttons.
-                    It was designed to with Reaper in mind be should be also useful in other daws.
-              </p>
-              <br>
-              More info on
-              <a href = "https://github.com/odoare/MoTo" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-              <br>
-              <a href = "https://github.com/odoare/MoTo/releases" class="font-bold text-gray-600 text-base">
-                Download lastest release
-              </a>
-            </div>
-          </div>
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    PiWheeG
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/pbg_screen.png" target="img/pbg_screen_screen.png">
-              <img class="w-half" src="img/pbg_screen.png" alt="PBG screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-                PiWheeG (Pitch Wheel Gate) is a midi effect plugin that fixes a problem that occurs with some hardware midi keyboards whose pitch wheel doesn't go back to zero. 
-              </p>
-              <br>
-              More info on              
-              <a href = "https://github.com/odoare/PiWheeG" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-            </div>
-          </div>
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex">
-                <a href="" target="_blank">
-                  <div class="my-auto ml-2">
-                    Triple Dist
-                  </div>
-                </a>
-              </div>
-            </div>
-            <a href="img/TripleDist_screen.png" target="img/TripleDist_screen.png">
-              <img class="w-full" src="img/TripleDist_screen.png" alt="TripleDist screenshot"
-              />            
-            </a>         
-            <div class="px-6 py-4">
-              <p class="text-base">
-                    Filter/distorsion plugin. The signal is separated into
-                    three frequency bands (low, mid, high) thanks to a state variable filter.
-                    Each band is then distorded and panned separately, and then signal are mmixed.
-                    This creates interesting spatialization effects when cutoff frequency is varied.
-              </p>
-              <br>
-              More info on              
-              <a href = "https://github.com/odoare/TripleDist" class="font-bold text-gray-600 text-base">
-                Github page
-              </a>
-            </div>
-          </div>
-
-    </section>
-
-    <section id="downloads" class="mt-12">
-      <br>
-      <br>
-      <div class="md:flex justify-center">
-        <div class="text-3xl title-deco tracking-wide">
-          Downloads
-        </div>
-      </div>
-
-        <div class="mt-8 grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
-
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="">
-              <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-                <div class="flex justify-center">
-                    <div class="my-auto ml-2">
-                      <a href="https://drive.google.com/drive/folders/1M80jb-Zp4Wb5v-iosryf8JDZc2pycW46?usp=drive_link"> <i class="far fa-folder-open"></i> Link to download folder <i class="far fa-folder-open"></i></a>
-                    </div>
-                </div>
-              </div>
+            <div class="eyebrow">About</div>
+            <h2 class="section-title">FX-Mechanics</h2>
+            <p class="section-lede">
+              A one-person studio building audio plugins rooted in physical modelling,
+              room acoustics and signal processing research, alongside original
+              electronic and noise music.
+            </p>
+            <p class="section-lede" style="margin-top: 16px;">
+              This practice also feeds, and is fed by, academic research: I'm a
+              lecturer and researcher in acoustics at ENSTA Paris, where structural
+              vibration, wave propagation and signal processing meet sound design
+              and composition. The tools developed here are born at that intersection:
+              built for the lab and the listening room, and just as at home in a mixing
+              or mastering studio, or a home studio.
+            </p>
+            <div class="link-list" style="margin-top: 20px;">
+              <a href="music.html">→ Music</a>
+              <a href="plugins.html">→ Audio plugins</a>
+              <a href="downloads.html">→ Downloads</a>
+              <a href="contact.html">→ Contact</a>
+              <a href="https://perso.ensta.fr/~doare/" target="_blank" rel="noopener">→ Research at ENSTA Paris</a>
+              <a href="https://www.facebook.com/profile.php?id=61591805556607" target="_blank" rel="noopener">→ Follow on Facebook</a>
             </div>
           </div>
         </div>
-    </section>
+      </section>
+    </main>
 
+    <footer class="site-footer">
+      <div>&copy; 2023–2026 Olivier Doaré</div>
+    </footer>
 
-    <!-- <section id="other" class="mt-12">
-      <br>
-      <br>
-      <div class="md:flex justify-center">
-        <div class="text-3xl title-deco tracking-wide">
-           Other projects
-        </div>
-      </div>
-      
-        <div class="mt-8 grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-          
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="">
-              <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-                <div class="flex">
-                  <a href="https://www.github.com/odoare/measpy" target="_blank">
-                    <img
-                      src="img/measpy.png"
-                      width="50px"
-                      class="bg-gray-300 py-1 px-1 rounded-full"
-                    />
-                  </a>
-                  <a href="https://www.github.com/odoare/measpy" target="_blank">
-                    <div class="my-auto ml-2">
-                      MEAsurements with PYthon (MeasPy)
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <p class="text-gray-400 text-base px-6 pb-4">
-                MeasPy is a set of class to facilitate data acquisition and signal processing.
-                It interfaces with third party APIs (NI daqmx, Picoscope and sound devices)
-                so that is possible to perform data acquisition using similar Python syntaxes.
-                The Signal and Spectral classes accelerate the scripting of signal analysis and processing,
-                thanks to its functionnal programming paradigm.
-              </p>
-              <br>
-              <p>
-                The Python package can be downloaded/forked from
-                <a href="https://www.github.com/odoare/measpy"> https://www.github.com/odoare/measpy </a>
-              </p>png
-
-            </div>
-          </div>
-        
-          <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="">
-              <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-                <div class="flex">
-                  <a href="https://www.github.com/odoare/music-generator" target="_blank">
-                    <img
-                      src="img/hp.png"
-                      width="50px"
-                      class="bg-gray-300 py-1 px-1 rounded-full"
-                    />
-                  </a>
-                  <a href="https://www.github.com/odoare/music-generator" target="_blank">
-                    <div class="my-auto ml-2">
-                      Music Generator
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <p class="text-gray-400 text-base px-6 pb-4">
-                Automatic music composition and synthesis with Pure Data and Lua.
-                In collaboration with <a href="https://github.com/bubblesly">Bubblesly</a>
-              </a><br />
-              </p>
-            </div>
-          </div>
-        </div> 
-          
-    </section> -->
-          
-    <section id="contact" class="mt-12">
-      <br>
-      <br>
-      <div class="md:flex justify-center">
-        <div class="text-3xl title-deco tracking-wide">
-           Contact
-        </div>
-      </div>
-
-      <div class="mt-8 grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
-
-        <div class="w-full rounded overflow-hidden shadow-lg">
-          <div class="">
-            <div class="font-bold text-xl mb-2 py-2 px-6 bg-gray-800">
-              <div class="flex justify-center">
-                <a href="https://perso.ensta-paris.fr/~doare" target="_blank">
-                  <img
-                    src="img/me.jpg"
-                    width="50px"
-                    class="bg-gray-300 py-1 px-1 rounded-full"
-                  />
-                </a>
-                <a href="mailto:olivier.doare@ensta-paris.fr" target="_blank">
-                  <div class="my-auto ml-2">
-                    Contact me (Olivier Doaré) :
-                    <a href="mailto:olivier.doare@ensta-paris.fr"><i class="fas fa-at"></i></a>
-                    <a href="https://github.com/odoare"><i class="fab fa-github"></i></a>
-                    <a href="https://perso.ensta-paris.fr/~doare"><i class="fas fa-globe"></i></a>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-</div>
-
-      <footer class="text-center mt-8 py-2 bg-gray-900 text-white">
-  <div>&copy; 2024-2025 Olivier Doaré</div>
-</footer>
-
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/player.js"></script>
   </body>
 </html>
