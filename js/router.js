@@ -62,6 +62,18 @@
     });
   }
 
+  // The GoatCounter script only counts the initial page load, so swapped-in
+  // pages have to be reported by hand. Mirrors its default path (pathname +
+  // search, no hash) so router hits and direct hits land on the same entry.
+  function countPageview(url, title) {
+    if (!window.goatcounter || !window.goatcounter.count) return;
+    window.goatcounter.count({
+      path: url.pathname + url.search,
+      title: title,
+      event: false,
+    });
+  }
+
   async function goTo(url, { push = true } = {}) {
     let html;
     try {
@@ -85,6 +97,7 @@
     document.title = doc.title;
     updateActiveNav(url.pathname);
     if (push) history.pushState({}, "", url.href);
+    countPageview(url, doc.title);
     applyCategoryFromHash(url.hash);
     window.scrollTo(0, 0);
     document.body.classList.remove("nav-open");
