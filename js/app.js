@@ -15,7 +15,9 @@
         .querySelectorAll(".filter-btn")
         .forEach((b) => b.classList.toggle("active", b === filterBtn));
       const filter = filterBtn.dataset.filter;
-      document.querySelectorAll(".category-block").forEach((block) => {
+      // Plugin pages group cards into .category-block sections; the news page
+      // is a flat timeline, so each .news-item carries its own category.
+      document.querySelectorAll(".category-block, .news-item").forEach((block) => {
         block.style.display =
           filter === "all" || block.dataset.category === filter ? "" : "none";
       });

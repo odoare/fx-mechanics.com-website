@@ -227,14 +227,34 @@ a.player-meta:hover .artist { color: var(--text-muted); }
 }
 .player-link:hover { color: var(--accent-strong); border-color: var(--accent); }
 
+/* The logo pushes everything else to the right, so the nav links and the
+   social button sit together as one right-hand group. (Using margin-auto
+   rather than space-between keeps them adjacent once a third child exists.) */
 nav.site-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 14px;
   padding: 14px 24px;
   max-width: var(--container);
   margin: 0 auto;
 }
+nav.site-nav .logo { margin-right: auto; }
+
+.nav-social {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-social:hover { color: var(--accent-strong); border-color: var(--accent); }
+.nav-social svg { width: 17px; height: 17px; }
 
 .logo {
   font-weight: 800;
@@ -490,6 +510,57 @@ nav.site-nav {
 .category-heading h3 { font-size: 1.4rem; }
 .category-heading .count { color: var(--text-faint); font-family: var(--font-mono); font-size: 0.85rem; }
 
+/* ---------- News timeline ---------- */
+.news-list {
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+.news-item {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 24px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--border);
+}
+.news-item > time {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  padding-top: 3px;
+}
+.news-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.news-tag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  flex: none;
+}
+.news-tag.release { color: var(--cyan); border-color: rgba(41, 194, 240, 0.35); }
+.news-tag.video { color: var(--accent-strong); border-color: rgba(113, 207, 55, 0.35); }
+.news-tag.music { color: var(--blue-strong); border-color: rgba(74, 139, 207, 0.4); }
+
+.news-title { font-weight: 700; font-size: 1.02rem; color: var(--text); }
+.news-title:hover { color: var(--accent-strong); }
+.news-item p {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 0.93rem;
+}
+
+@media (max-width: 640px) {
+  .news-item { grid-template-columns: 1fr; gap: 6px; }
+}
+
 /* ---------- Music page ---------- */
 .music-feature {
   display: flex;
@@ -583,6 +654,10 @@ nav.site-nav {
   :root { --header-h: 112px; }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
+  /* Keep the social button left of the hamburger; it lives outside the
+     collapsible list, so it stays reachable while the menu is closed. */
+  .nav-social { order: 1; }
+  .nav-toggle { order: 2; }
   .player-meta { max-width: 110px; }
   .player-link { display: none; }
   .about-grid, .music-feature { flex-direction: column; text-align: center; }

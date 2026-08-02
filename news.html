@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News / FX-Mechanics</title>
+    <meta name="description" content="Plugin releases, demo videos and music news from FX-Mechanics — Olivier Doaré." />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="player-bar">
+        <div class="player-bar-inner">
+          <button class="player-btn prev" type="button" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6l-8.5 6 8.5 6V6zM6 6h2v12H6z"/></svg>
+          </button>
+          <button class="player-btn play" type="button" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <button class="player-btn next" type="button" aria-label="Next track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6l8.5 6L6 18V6zM16 6h2v12h-2z"/></svg>
+          </button>
+          <a class="player-meta" href="music.html">
+            <div class="track">Reboot</div>
+            <div class="artist">Y'n'N / H2O2</div>
+          </a>
+          <div class="player-scrub">
+            <span class="player-time cur">0:00</span>
+            <input type="range" class="player-range" min="0" max="100" value="0" step="0.1" aria-label="Seek" />
+            <span class="player-time end">0:00</span>
+          </div>
+          <a class="player-link" href="music.html">All releases</a>
+          <audio id="fx-audio" preload="none"></audio>
+        </div>
+      </div>
+      <nav class="site-nav">
+        <a href="index.html" class="logo">FX<span class="dot">·</span>Mechanics</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="news.html" class="nav-link">News</a></li>
+          <li class="nav-dropdown">
+            <a href="plugins.html" class="nav-link">Plugins</a>
+            <div class="nav-dropdown-panel">
+              <a href="plugins.html#effects"><span class="swatch" style="background:var(--cyan)"></span>Effects</a>
+              <a href="plugins.html#synths"><span class="swatch" style="background:var(--accent)"></span>Synths</a>
+              <a href="plugins.html#tools"><span class="swatch" style="background:var(--blue-strong)"></span>Tools</a>
+              <a href="plugins.html#archived"><span class="swatch" style="background:var(--text-faint)"></span>Old / Archived</a>
+            </div>
+          </li>
+          <li><a href="music.html" class="nav-link">Music</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <a class="nav-social" href="https://www.facebook.com/profile.php?id=61591805556607" target="_blank" rel="noopener"
+           aria-label="Follow FX-Mechanics on Facebook" title="Follow on Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section" style="padding-top: 56px;">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow">News</div>
+            <h1 class="section-title">What's new</h1>
+            <p class="section-lede">
+              Plugin releases, demo videos and music news, newest first.
+            </p>
+          </div>
+
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all" type="button">All</button>
+            <button class="filter-btn" data-filter="releases" type="button">Releases</button>
+            <button class="filter-btn" data-filter="videos" type="button">Videos</button>
+            <button class="filter-btn" data-filter="music" type="button">Music</button>
+          </div>
+
+          <!-- Newest first. To add an entry, copy one <li> block and edit the
+               date, the data-category (releases / videos / music) and the link. -->
+          <ul class="news-list">
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-08-02">2026-08-02</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/Mango/releases/tag/v0.1.1" target="_blank" rel="noopener">Mango v0.1.1</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="videos">
+              <time datetime="2026-07-26">2026-07-26</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag video">Video</span>
+                  <a class="news-title" href="https://www.youtube.com/watch?v=Jsm9x_oHtCg" target="_blank" rel="noopener">Mango, the audio mangler</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-07-25">2026-07-25</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/Mango/releases/tag/v0.1.0" target="_blank" rel="noopener">Mango v0.1.0</a>
+                </div>
+                <p>First public release of the modular sound glitcher.</p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="videos">
+              <time datetime="2026-07-22">2026-07-22</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag video">Video</span>
+                  <a class="news-title" href="https://www.youtube.com/watch?v=htCHaOSKMoQ" target="_blank" rel="noopener">Mango Teaser</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-07-19">2026-07-19</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeFX/releases/tag/v0.3.0" target="_blank" rel="noopener">FxmeFX v0.3.0</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="videos">
+              <time datetime="2026-07-18">2026-07-18</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag video">Video</span>
+                  <a class="news-title" href="https://www.youtube.com/watch?v=XxmrcROA5Hk" target="_blank" rel="noopener">AmbiRR2 demo</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-07-14">2026-07-14</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/TeAr/releases/tag/v0.3.1" target="_blank" rel="noopener">TeAr v0.3.1</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-07-11">2026-07-11</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/AmbiRR2/releases/tag/v0.1.1" target="_blank" rel="noopener">AmbiRR2 v0.1.1</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-07-10">2026-07-10</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/AmbiRR2/releases/tag/v0.1.0" target="_blank" rel="noopener">AmbiRR2 v0.1.0</a>
+                </div>
+                <p>First release of the full rewrite: up to 16 sources, 3rd-order ambisonics.</p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-07-05">2026-07-05</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/MechanOdd/releases/tag/v0.3.0" target="_blank" rel="noopener">MechanOdd v0.3.0</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-07-02">2026-07-02</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/MechanOdd/releases/tag/v0.2.0" target="_blank" rel="noopener">MechanOdd v0.2.0</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-06-26">2026-06-26</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/MechanOdd/releases/tag/v0.1.0" target="_blank" rel="noopener">MechanOdd v0.1.0</a>
+                </div>
+                <p>The physical-modelling successor to StrinGO.</p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-06-24">2026-06-24</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeFX/releases/tag/v0.2.0" target="_blank" rel="noopener">FxmeFX v0.2.0</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-06-11">2026-06-11</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/MechanOdd/releases/tag/v0.0.1" target="_blank" rel="noopener">MechanOdd v0.0.1</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-05-27">2026-05-27</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeSampler/releases/tag/v0.2.0" target="_blank" rel="noopener">Black Widow Drums v0.2.0</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-05-26">2026-05-26</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeFX/releases/tag/v0.1.0" target="_blank" rel="noopener">FxmeFX v0.1.0</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-05-25">2026-05-25</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/TeAr/releases/tag/v0.3.0" target="_blank" rel="noopener">TeAr v0.3.0</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-05-09">2026-05-09</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeFX/releases/tag/v0.0.2" target="_blank" rel="noopener">FxmeFX v0.0.2</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-05-09">2026-05-09</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeFX/releases/tag/v0.0.1" target="_blank" rel="noopener">FxmeFX v0.0.1</a>
+                </div>
+                <p>First release of the FxmeFX effects collection.</p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-03-28">2026-03-28</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeSampler/releases/tag/0.1" target="_blank" rel="noopener">Black Widow Drums 0.1</a>
+                </div>
+                <p>First release of the drum sampler, recorded on a Gretsch Black Widow kit.</p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="videos">
+              <time datetime="2026-03-28">2026-03-28</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag video">Video</span>
+                  <a class="news-title" href="https://www.youtube.com/watch?v=3gGJhpji6mE" target="_blank" rel="noopener">FX-Mechanics Black Widow Drums presets demo</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="music">
+              <time datetime="2026-03-24">2026-03-24</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag music">Music</span>
+                  <a class="news-title" href="music.html">H2O2 remaster finished</a>
+                </div>
+                <p>
+                  The remastering of the H2O2 album has just finished. It will be out in
+                  autumn 2026, on the WCPM/Massivebass label. Stay tuned!
+                </p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-01-25">2026-01-25</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/TeAr/releases/tag/0.2" target="_blank" rel="noopener">TeAr 0.2</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="videos">
+              <time datetime="2026-01-25">2026-01-25</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag video">Video</span>
+                  <a class="news-title" href="https://www.youtube.com/watch?v=pWOuQep7nIs" target="_blank" rel="noopener">Getting Started with TeAr — The Text Arpeggiator</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2025-12-20">2025-12-20</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/RhyGa/releases/tag/0.2" target="_blank" rel="noopener">RhyGa 0.2</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2025-12-17">2025-12-17</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/TeAr/releases/tag/0.1" target="_blank" rel="noopener">TeAr 0.1</a>
+                </div>
+                <p>First release of the polyrhythmic MIDI arpeggiator.</p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="videos">
+              <time datetime="2025-12-17">2025-12-17</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag video">Video</span>
+                  <a class="news-title" href="https://www.youtube.com/watch?v=__oc9Wncv1Y" target="_blank" rel="noopener">TeAr, the Text Arpeggiator, demo</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2025-11-05">2025-11-05</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/RhyGa/releases/tag/0.1" target="_blank" rel="noopener">RhyGa 0.1</a>
+                </div>
+                <p>First release of the rhythmic gate effect.</p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="music">
+              <time datetime="2025-05-08">2025-05-08</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag music">Music</span>
+                  <a class="news-title" href="music.html">H2O2 album released</a>
+                </div>
+                <p>The Y'n'N album H2O2 is out on all major platforms.</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>&copy; 2024–2026 Olivier Doaré</div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/player.js"></script>
+
+    <!-- GoatCounter: cookieless, privacy-friendly stats. Router navigations
+         are counted manually in js/router.js, since only <main> is swapped. -->
+    <script data-goatcounter="https://fx-mechanics.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </body>
+</html>
