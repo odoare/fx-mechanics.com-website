@@ -161,13 +161,19 @@ button { font-family: inherit; }
 .player-btn.play.is-playing .icon-play { display: none; }
 .player-btn.play.is-playing .icon-pause { display: block; }
 
+/* The now-playing block links to the releases page — the convention every
+   music player follows, and the only music affordance left on mobile once
+   .player-link is hidden below 860px. */
 .player-meta {
+  display: block;
   flex: none;
   min-width: 0;
   max-width: 190px;
   font-family: var(--font-mono);
   line-height: 1.25;
 }
+a.player-meta:hover .track { color: var(--accent-strong); }
+a.player-meta:hover .artist { color: var(--text-muted); }
 .player-meta .track { font-size: 0.82rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-meta .artist { font-size: 0.72rem; color: var(--text-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 

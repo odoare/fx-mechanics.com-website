@@ -110,7 +110,17 @@
     const category = isCategoryLink(url);
 
     if (url.pathname === location.pathname) {
-      if (!category) return; // plain in-page anchor: let the browser handle it
+      if (!category) {
+        // A self-link to the page we're already on — the now-playing block on
+        // music.html, or the logo on the home page. Letting the browser reload
+        // would tear down the player, so just go back to the top instead.
+        // Real in-page anchors (#…) still fall through to the browser.
+        if (!url.hash) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        return;
+      }
       e.preventDefault();
       applyCategoryFromHash(url.hash);
       if (url.href !== location.href) history.replaceState({}, "", url.href);
