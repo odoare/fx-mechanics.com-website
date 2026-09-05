@@ -579,6 +579,39 @@ nav.site-nav .logo { margin-right: auto; }
   .news-item { grid-template-columns: 1fr; gap: 6px; }
 }
 
+/* One highlight per category, shown on the home page. */
+.news-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.news-highlight {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.news-highlight:hover { border-color: rgba(113, 207, 55, 0.35); transform: translateY(-3px); }
+.news-highlight time {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-left: 10px;
+}
+.news-highlight .news-highlight-title {
+  display: block;
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--text);
+}
+.news-highlight:hover .news-highlight-title { color: var(--accent-strong); }
+@media (max-width: 780px) {
+  .news-highlights { grid-template-columns: 1fr; }
+}
+
 /* ---------- Music page ---------- */
 .music-feature {
   display: flex;
