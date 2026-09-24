@@ -482,23 +482,6 @@ nav.site-nav .logo { margin-right: auto; }
 .card-links a { color: var(--text-muted); font-weight: 600; }
 .card-links a:hover { color: var(--accent-strong); }
 
-/* Coming soon teasers */
-.teaser-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-}
-.teaser-item {
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform 0.2s;
-}
-.teaser-item img { width: 100%; height: auto; display: block; }
-.teaser-item:hover { transform: translateY(-3px); }
-@media (max-width: 720px) {
-  .teaser-grid { grid-template-columns: 1fr; }
-}
-
 /* Plugin category filters */
 .filters {
   display: flex;
