@@ -438,11 +438,21 @@ nav.site-nav .logo { margin-right: auto; }
   border: 1px solid var(--border);
   color: var(--text-muted);
   flex: none;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  user-select: none;
+}
+.card-tag:hover {
+  background: var(--surface-2);
 }
 .card-tag.effects { color: var(--cyan); border-color: rgba(41, 194, 240, 0.35); }
+.card-tag.effects:hover { border-color: var(--cyan); color: var(--cyan); }
 .card-tag.synths { color: var(--accent-strong); border-color: rgba(239, 125, 111, 0.35); }
+.card-tag.synths:hover { border-color: var(--accent-strong); color: var(--accent-strong); }
 .card-tag.tools { color: var(--blue-strong); border-color: rgba(74, 139, 207, 0.4); }
+.card-tag.tools:hover { border-color: var(--blue-strong); color: var(--blue-strong); }
 .card-tag.archived { color: var(--text-faint); border-color: var(--border); }
+.card-tag.archived:hover { border-color: var(--text-muted); color: var(--text); }
 
 .card.is-archived { opacity: 0.72; }
 .archived-note {

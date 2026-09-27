@@ -44,7 +44,13 @@
 
   function applyCategoryFromHash(hash) {
     const key = hash.slice(1);
-    if (!PLUGIN_CATEGORIES.includes(key)) return;
+    if (!PLUGIN_CATEGORIES.includes(key)) {
+      if (!key) {
+        const btn = document.querySelector('.filter-btn[data-filter="all"]');
+        if (btn && !btn.classList.contains("active")) btn.click();
+      }
+      return;
+    }
     const btn = document.querySelector('.filter-btn[data-filter="' + key + '"]');
     if (btn && !btn.classList.contains("active")) btn.click();
   }

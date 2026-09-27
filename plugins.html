@@ -70,461 +70,426 @@
             <h1 class="section-title">Effects, synths &amp; tools</h1>
             <p class="section-lede">
               Free and open-source JUCE plugins for synthesis, spatial audio, rhythm
-              and studio utility ; built and maintained on GitHub.
+              and studio utility. Built and maintained on GitHub.
             </p>
             <p class="section-lede" style="margin-top: 12px;">
-              These are working tools, not demos — part of the toolkit behind the
+              These are part of the toolkit behind the
               <a href="music.html">records released here</a>.
             </p>
           </div>
 
           <div class="filters">
             <button class="filter-btn active" data-filter="all" type="button">All</button>
-            <button class="filter-btn" data-filter="effects" type="button">Effects</button>
-            <button class="filter-btn" data-filter="synths" type="button">Synths</button>
-            <button class="filter-btn" data-filter="tools" type="button">Tools</button>
-            <button class="filter-btn" data-filter="archived" type="button">Old / Archived</button>
+            <button class="filter-btn" id="effects" data-filter="effects" type="button">Effects</button>
+            <button class="filter-btn" id="synths" data-filter="synths" type="button">Synths</button>
+            <button class="filter-btn" id="tools" data-filter="tools" type="button">Tools</button>
+            <button class="filter-btn" id="archived" data-filter="archived" type="button">Old / Archived</button>
           </div>
 
-          <div class="category-block" data-category="effects" id="effects">
-            <div class="category-heading">
-              <h3>Effects</h3>
-              <span class="count">6 plugins</span>
+          <p class="archived-note" data-category="archived" style="display: none;">
+            No longer actively maintained. Kept available for projects that still depend
+            on them. For new work, use the recommended replacement instead.
+          </p>
+
+          <div class="grid">
+
+            <div class="card" data-category="tools" data-date="2026-09-24">
+              <a class="card-media" href="img/supermoto.png" target="_blank">
+                <img src="img/supermoto.png" alt="SuperMoTo screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">SuperMoTo</div>
+                  <span class="card-tag tools" data-filter="tools" role="button" tabindex="0" title="Filter by Tools">Tool</span>
+                </div>
+                <p class="card-text">
+                  SuperMoTo (The Super Monitoring Tool) puts a studio's monitoring signal chain into one plugin instance. Route up to 32 inputs to 32 outputs through a full matrix with per-crosspoint gain, EQ and polarity, apply per-output trim, EQ, time-alignment delay and zero-latency FIR room correction filters with automatic inter-output latency compensation, measure loudspeakers, align subwoofers phase-coherently, and decode Ambisonics up to 3rd order.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/SuperMoTo" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/SuperMoTo/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="files/SuperMoTo.pdf" target="_blank" rel="noopener">User manual (PDF)</a>
+                  <a href="files/SuperMoTo-quickstart.pdf" target="_blank" rel="noopener">Quickstart guide (PDF)</a>
+                  <a href="files/SuperMoTo-paper.pdf" target="_blank" rel="noopener">Paper (PDF)</a>
+                </div>
+              </div>
             </div>
-            <div class="grid">
 
-              <div class="card">
-                <a class="card-media" href="img/bloom.png" target="_blank">
-                  <img src="img/bloom.png" alt="Bloom screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">Bloom</div>
-                    <span class="card-tag effects">Effect</span>
-                  </div>
-                  <p class="card-text">
-                    Bloom turns a single take into a cloud of virtual ones: each take gets
-                    its own detune and sits somewhere on the sphere around the listener, in
-                    two independent series steered by azimuth, elevation and spread. The
-                    result is rendered either as a stereo pair of virtual microphones with
-                    selectable polar patterns, or as a 1st- to 3rd-order ambisonic stream
-                    (AmbiX, ACN/SN3D). A grain mode has the takes capture and loop slices of
-                    the incoming audio round-robin, and those grain steps can be driven by
-                    held MIDI notes, turning the cloud into a pitch-locked oscillator bank
-                    voicing whatever chord you play.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/Bloom" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/Bloom/releases" target="_blank" rel="noopener">Download</a>
-                    <a href="https://www.youtube.com/watch?v=WzZQw8mFqsk" target="_blank" rel="noopener">Demo video</a>              
-                  </div>
+            <div class="card" data-category="synths" data-date="2026-09-04">
+              <a class="card-media" href="img/modaldish_screen.png" target="_blank">
+                <img src="img/modaldish_screen.png" alt="ModalDish screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">ModalDish</div>
+                  <span class="card-tag synths" data-filter="synths" role="button" tabindex="0" title="Filter by Synths">Synth</span>
+                </div>
+                <p class="card-text">
+                  ModalDish is a physical model of a plate of arbitrary shape, solved by
+                  finite elements. Draw an outline, set a boundary condition on each edge
+                  segment, and it computes the plate's eigenmodes and turns them into a bank
+                  of resonant filters, nothing sampled, nothing convolved. Play it as an
+                  instrument by striking it with the mouse or MIDI, or feed it audio and use
+                  it as an effect. Two cheap geometric nonlinearities (a dynamic tension that
+                  bends pitch up on a hard hit, and a cubic cascade that carries energy into
+                  shimmer) add character without the cost of solving the full nonlinear
+                  plate equations.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/ModalDish" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/ModalDish/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="https://youtu.be/EDX9046LzlA" target="_blank" rel="noopener">Demo video</a>
                 </div>
               </div>
-              
-              <div class="card">
-                <a class="card-media" href="img/mango.png" target="_blank">
-                  <img src="img/mango.png" alt="Mango screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">Mango</div>
-                    <span class="card-tag effects">Effect</span>
-                  </div>
-                  <p class="card-text">
-                    Mango is a modular sound glitcher: route audio through a chain of
-                    step-sequenced lanes (gater, grain, delay, distortion, filter, quantizer)
-                    where each step can carry its own settings and probabilities. Randomized
-                    seeds and per-step duration/curve controls turn static loops into
-                    constantly mutating, glitchy textures.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/Mango" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/Mango/releases" target="_blank" rel="noopener">Download</a>
-                    <a href="files/minilanguage.pdf" target="_blank" rel="noopener">Mini language handout</a>
-                    <a href="https://www.youtube.com/watch?v=Jsm9x_oHtCg" target="_blank" rel="noopener">Demo video</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/AmbiRR2.png" target="_blank">
-                  <img src="img/AmbiRR2.png" alt="AmbiRR2 screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">AmbiRR2</div>
-                    <span class="card-tag effects">Effect</span>
-                  </div>
-                  <p class="card-text">
-                    AmbiRR2 places up to 16 mono sources in a virtual box-shaped room and renders
-                    the space as either a 1st-, 2nd- or 3rd-order ambisonic stream (AmbiX, ACN/SN3D)
-                    or a stereo recording from two virtual microphones with selectable polar patterns.
-                    It's a full rewrite of the earlier BiRR/AmbiRR with a realtime-safe, thread-aware
-                    architecture: the direct sound and early reflections come from an exact per-source
-                    image-source model, while the late reverberation is a single diffuse field shared
-                    by every source. Moving a source or the listener never rebuilds the impulse
-                    response, so both can be automated freely in the DAW.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/AmbiRR2" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/AmbiRR2/releases" target="_blank" rel="noopener">Download</a>
-                    <a href="files/AmbiRR2.pdf" target="_blank" rel="noopener">Manual</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/tear_screen.png" target="_blank">
-                  <img src="img/tear_screen.png" alt="TeAr screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">TeAr</div>
-                    <span class="card-tag effects">MIDI FX</span>
-                  </div>
-                  <p class="card-text">
-                    TeAr is an advanced polyrhythmic and polyphonic MIDI arpeggiator plugin. It
-                    features any number of independent arpeggiator engines, each with its own pattern,
-                    subdivision and MIDI output channel, enabling complex, evolving musical
-                    phrases and textures.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/TeAr" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/TeAr/releases" target="_blank" rel="noopener">Download</a>
-                    <a href="files/TeAr-language-reference.pdf" target="_blank" rel="noopener">Pattern language reference</a>
-                    <a href="https://www.youtube.com/watch?v=__oc9Wncv1Y" target="_blank" rel="noopener">Demo video</a>
-                    <a href="https://www.youtube.com/watch?v=pWOuQep7nIs" target="_blank" rel="noopener">Tutorial</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/rhyga_screen.png" target="_blank">
-                  <img src="img/rhyga_screen.png" alt="RhyGa screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">RhyGa</div>
-                    <span class="card-tag effects">Effect</span>
-                  </div>
-                  <p class="card-text">
-                    RhyGa is a simple yet versatile rhythmic gate effect for your DAW. It creates
-                    tempo-synced patterns by modulating the volume of an incoming audio signal.
-                    With per-step controls for level, pan, duration and an auxiliary send, it turns
-                    static pads into pulsating rhythms, adds stutter effects on vocals, or dynamic
-                    movement to any track.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/RhyGa" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/RhyGa/releases" target="_blank" rel="noopener">Download</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/TripleDist_screen.png" target="_blank">
-                  <img src="img/TripleDist_screen.png" alt="TripleDist screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">Triple Dist</div>
-                    <span class="card-tag effects">Effect</span>
-                  </div>
-                  <p class="card-text">
-                    A filter/distortion plugin. The signal is split into three frequency bands
-                    (low, mid, high) via a state-variable filter. Each band is distorted and panned
-                    separately before being mixed back together, creating interesting spatialization
-                    effects as the cutoff frequency is varied.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/TripleDist" target="_blank" rel="noopener">Info on github</a>
-                  </div>
-                </div>
-              </div>
-
             </div>
-          </div>
 
-          <div class="category-block" data-category="synths" id="synths">
-            <div class="category-heading">
-              <h3>Synths</h3>
-              <span class="count">5 plugins</span>
+            <div class="card" data-category="effects" data-date="2026-08-04">
+              <a class="card-media" href="img/bloom.png" target="_blank">
+                <img src="img/bloom.png" alt="Bloom screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">Bloom</div>
+                  <span class="card-tag effects" data-filter="effects" role="button" tabindex="0" title="Filter by Effects">Effect</span>
+                </div>
+                <p class="card-text">
+                  Bloom turns a single take into a cloud of virtual ones: each take gets
+                  its own detune and sits somewhere on the sphere around the listener, in
+                  two independent series steered by azimuth, elevation and spread. The
+                  result is rendered either as a stereo pair of virtual microphones with
+                  selectable polar patterns, or as a 1st- to 3rd-order ambisonic stream
+                  (AmbiX, ACN/SN3D). A grain mode has the takes capture and loop slices of
+                  the incoming audio round-robin, and those grain steps can be driven by
+                  held MIDI notes, turning the cloud into a pitch-locked oscillator bank
+                  voicing whatever chord you play.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/Bloom" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/Bloom/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="https://www.youtube.com/watch?v=WzZQw8mFqsk" target="_blank" rel="noopener">Demo video</a>              
+                </div>
+              </div>
             </div>
-            <div class="grid">
 
-              <div class="card">
-                <a class="card-media" href="img/modaldish_screen.png" target="_blank">
-                  <img src="img/modaldish_screen.png" alt="ModalDish screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">ModalDish</div>
-                    <span class="card-tag synths">Synth</span>
-                  </div>
-                  <p class="card-text">
-                    ModalDish is a physical model of a plate of arbitrary shape, solved by
-                    finite elements. Draw an outline, set a boundary condition on each edge
-                    segment, and it computes the plate's eigenmodes and turns them into a bank
-                    of resonant filters, nothing sampled, nothing convolved. Play it as an
-                    instrument by striking it with the mouse or MIDI, or feed it audio and use
-                    it as an effect. Two cheap geometric nonlinearities (a dynamic tension that
-                    bends pitch up on a hard hit, and a cubic cascade that carries energy into
-                    shimmer) add character without the cost of solving the full nonlinear
-                    plate equations.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/ModalDish" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/ModalDish/releases" target="_blank" rel="noopener">Download</a>
-                    <a href="https://youtu.be/EDX9046LzlA" target="_blank" rel="noopener">Demo video</a>
-                  </div>
+            <div class="card" data-category="effects" data-date="2026-07-25">
+              <a class="card-media" href="img/mango.png" target="_blank">
+                <img src="img/mango.png" alt="Mango screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">Mango</div>
+                  <span class="card-tag effects" data-filter="effects" role="button" tabindex="0" title="Filter by Effects">Effect</span>
+                </div>
+                <p class="card-text">
+                  Mango is a modular sound glitcher: route audio through a chain of
+                  step-sequenced lanes (gater, grain, delay, distortion, filter, quantizer)
+                  where each step can carry its own settings and probabilities. Randomized
+                  seeds and per-step duration/curve controls turn static loops into
+                  constantly mutating, glitchy textures.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/Mango" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/Mango/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="files/minilanguage.pdf" target="_blank" rel="noopener">Mini language handout</a>
+                  <a href="https://www.youtube.com/watch?v=Jsm9x_oHtCg" target="_blank" rel="noopener">Demo video</a>
                 </div>
               </div>
-
-              <div class="card">
-                <a class="card-media" href="img/mechanodd.png" target="_blank">
-                  <img src="img/mechanodd.png" alt="MechanOdd screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">MechanOdd</div>
-                    <span class="card-tag synths">Synth</span>
-                  </div>
-                  <p class="card-text">
-                    MechanOdd is a polyphonic physical-modelling synthesizer that synthesizes sound
-                    by exciting simulated mechanical resonators (strings, plates, membranes and
-                    beams) and routing the results through a feedback matrix, effects chains and a
-                    modulation engine. It's the new, more powerful and modular successor to StrinGO.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/MechanOdd" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/MechanOdd/releases" target="_blank" rel="noopener">Download</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/BlackWidowPhoto.png" target="_blank">
-                  <img src="img/BlackWidowPhoto.png" alt="Black Widow screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">Black Widow Drums</div>
-                    <span class="card-tag synths">Sampler</span>
-                  </div>
-                  <p class="card-text">
-                    The Black Widow Drums project is the first published drum sampler showcase for
-                    FxmeSampler's advanced spatial and processing features. Recorded on a Gretsch
-                    Black Widow kit, it uses an original microphone array and signal-processing
-                    chain to deliver a studio-ready drum sound.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/FxmeSampler" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/FxmeSampler/releases" target="_blank" rel="noopener">Download</a>
-                    <a href="https://www.youtube.com/watch?v=3gGJhpji6mE" target="_blank" rel="noopener">Demo video</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/image-in_screen.png" target="_blank">
-                  <img src="img/image-in_screen.png" alt="Image-In screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">Image-In</div>
-                    <span class="card-tag synths">Synth</span>
-                  </div>
-                  <p class="card-text">
-                    Image-In is a virtual instrument based on an image buffer read by oscillators
-                    that follow a path across the image. LFOs and envelopes can modulate the path,
-                    and user images can be imported for even more sonic possibilities.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/Image-In" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/Image-In/releases" target="_blank" rel="noopener">Download</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/lorenz_screen.png" target="_blank">
-                  <img src="img/lorenz_screen.png" alt="Lorenz screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">Lorenz</div>
-                    <span class="card-tag synths">Synth</span>
-                  </div>
-                  <p class="card-text">
-                    Lorenz is a unique software synthesizer that generates sound by simulating a
-                    modified version of the Lorenz attractor, a classic chaotic system. Instead of
-                    traditional oscillators, it uses the evolving state of the attractor to create
-                    complex, ever-changing, organic sounds.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/Lorenz" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/Lorenz/releases" target="_blank" rel="noopener">Pre-release download</a>
-                  </div>
-                </div>
-              </div>
-
             </div>
-          </div>
 
-          <div class="category-block" data-category="tools" id="tools">
-            <div class="category-heading">
-              <h3>Tools</h3>
-              <span class="count">4 plugins</span>
+            <div class="card" data-category="effects" data-date="2026-07-10">
+              <a class="card-media" href="img/AmbiRR2.png" target="_blank">
+                <img src="img/AmbiRR2.png" alt="AmbiRR2 screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">AmbiRR2</div>
+                  <span class="card-tag effects" data-filter="effects" role="button" tabindex="0" title="Filter by Effects">Effect</span>
+                </div>
+                <p class="card-text">
+                  AmbiRR2 places up to 16 mono sources in a virtual box-shaped room and renders
+                  the space as either a 1st-, 2nd- or 3rd-order ambisonic stream (AmbiX, ACN/SN3D)
+                  or a stereo recording from two virtual microphones with selectable polar patterns.
+                  It's a full rewrite of the earlier BiRR/AmbiRR with a realtime-safe, thread-aware
+                  architecture: the direct sound and early reflections come from an exact per-source
+                  image-source model, while the late reverberation is a single diffuse field shared
+                  by every source. Moving a source or the listener never rebuilds the impulse
+                  response, so both can be automated freely in the DAW.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/AmbiRR2" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/AmbiRR2/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="files/AmbiRR2.pdf" target="_blank" rel="noopener">Manual</a>
+                </div>
+              </div>
             </div>
-            <div class="grid">
 
-              <div class="card">
-                <a class="card-media" href="img/supermoto.png" target="_blank">
-                  <img src="img/supermoto.png" alt="SuperMoTo screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">SuperMoTo</div>
-                    <span class="card-tag tools">Tool</span>
-                  </div>
-                  <p class="card-text">
-                    SuperMoTo (The Super Monitoring Tool) puts a studio's monitoring signal chain into one plugin instance. Route up to 32 inputs to 32 outputs through a full matrix with per-crosspoint gain, EQ and polarity, apply per-output trim, EQ, time-alignment delay and zero-latency FIR room correction filters with automatic inter-output latency compensation, measure loudspeakers, align subwoofers phase-coherently, and decode Ambisonics up to 3rd order.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/SuperMoTo" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/SuperMoTo/releases" target="_blank" rel="noopener">Download</a>
-                    <a href="files/SuperMoTo.pdf" target="_blank" rel="noopener">User manual (PDF)</a>
-                    <a href="files/SuperMoTo-quickstart.pdf" target="_blank" rel="noopener">Quickstart guide (PDF)</a>
-                    <a href="files/SuperMoTo-paper.pdf" target="_blank" rel="noopener">Paper (PDF)</a>
-                  </div>
+            <div class="card" data-category="synths" data-date="2026-06-26">
+              <a class="card-media" href="img/mechanodd.png" target="_blank">
+                <img src="img/mechanodd.png" alt="MechanOdd screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">MechanOdd</div>
+                  <span class="card-tag synths" data-filter="synths" role="button" tabindex="0" title="Filter by Synths">Synth</span>
+                </div>
+                <p class="card-text">
+                  MechanOdd is a polyphonic physical-modelling synthesizer that synthesizes sound
+                  by exciting simulated mechanical resonators (strings, plates, membranes and
+                  beams) and routing the results through a feedback matrix, effects chains and a
+                  modulation engine. It's the new, more powerful and modular successor to StrinGO.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/MechanOdd" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/MechanOdd/releases" target="_blank" rel="noopener">Download</a>
                 </div>
               </div>
-
-              <div class="card">
-                <a class="card-media" href="img/moto_screen.png" target="_blank">
-                  <img src="img/moto_screen.png" alt="MoTo screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">MoTo</div>
-                    <span class="card-tag tools">Tool</span>
-                  </div>
-                  <p class="card-text">
-                    MoTo (Monitoring Tool) sits after the master track in your DAW to mimic
-                    hardware monitor controllers. It lets you switch between four stereo outputs
-                    and has mute/dim/solo buttons. Designed with Reaper in mind, but useful in
-                    other DAWs too.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/MoTo" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/MoTo/releases" target="_blank" rel="noopener">Latest release</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/pbg_screen.png" target="_blank">
-                  <img src="img/pbg_screen.png" alt="PiWheeG screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">PiWheeG</div>
-                    <span class="card-tag tools">MIDI tool</span>
-                  </div>
-                  <p class="card-text">
-                    PiWheeG (Pitch Wheel Gate) is a MIDI effect plugin that fixes a common problem
-                    with some hardware MIDI keyboards whose pitch wheel doesn't return exactly to zero.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/PiWheeG" target="_blank" rel="noopener">Info on github</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card">
-                <a class="card-media" href="img/flappychord_screenshot.png" target="_blank">
-                  <img src="img/flappychord_screenshot.png" alt="Flappy Chord screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">Flappy Chord</div>
-                    <span class="card-tag tools">Learning tool</span>
-                  </div>
-                  <p class="card-text">
-                    Flappy Chord is a simple prototype of a musical game that reimagines the classic
-                    "Flappy Bird" formula as a fun tool for learning music. The bird is controlled by
-                    playing notes and chords on a connected MIDI keyboard.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/FlappyChord" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/FlappyChord/releases" target="_blank" rel="noopener">Download</a>
-                  </div>
-                </div>
-              </div>
-
             </div>
-          </div>
 
-          <div class="category-block" data-category="archived" id="archived">
-            <div class="category-heading">
-              <h3>Old / Archived</h3>
-              <span class="count">2 plugins</span>
-            </div>
-            <p class="archived-note">
-              No longer actively maintained. Kept available for projects that still depend
-              on them. For new work, use the recommended replacement instead.
-            </p>
-            <div class="grid">
-
-              <div class="card is-archived">
-                <a class="card-media" href="img/BiRR_screen.png" target="_blank">
-                  <img src="img/BiRR_screen.png" alt="BiRR screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">BiRR / AmbiRR</div>
-                    <span class="card-tag archived">Archived</span>
-                  </div>
-                  <p class="card-text">
-                    BiRR (and her ambisonic sister AmbiRR) were room simulators that emulated the
-                    sound produced by two monophonic sources perceived by a listener in a
-                    rectangular (2D) or parallelepipedic (3D) room, with adjustable room and
-                    source/listener positions, and stereo or first-order ambisonic output.
-                    Superseded by <a href="plugins.html#effects">AmbiRR2</a>, a full rewrite
-                    supporting up to 16 sources and 3rd-order ambisonic output: new projects
-                    should use that instead.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/BiRR" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/BiRR/releases" target="_blank" rel="noopener">Download</a>
-                  </div>
+            <div class="card" data-category="synths" data-date="2026-03-28">
+              <a class="card-media" href="img/BlackWidowPhoto.png" target="_blank">
+                <img src="img/BlackWidowPhoto.png" alt="Black Widow screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">Black Widow Drums</div>
+                  <span class="card-tag synths" data-filter="synths" role="button" tabindex="0" title="Filter by Synths">Sampler</span>
+                </div>
+                <p class="card-text">
+                  The Black Widow Drums project is the first published drum sampler showcase for
+                  FxmeSampler's advanced spatial and processing features. Recorded on a Gretsch
+                  Black Widow kit, it uses an original microphone array and signal-processing
+                  chain to deliver a studio-ready drum sound.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/FxmeSampler" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/FxmeSampler/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="https://www.youtube.com/watch?v=3gGJhpji6mE" target="_blank" rel="noopener">Demo video</a>
                 </div>
               </div>
+            </div>
 
-              <div class="card is-archived">
-                <a class="card-media" href="img/StrinGO_screen.png" target="_blank">
-                  <img src="img/StrinGO_screen.png" alt="StrinGO screenshot" loading="lazy" />
-                </a>
-                <div class="card-body">
-                  <div class="card-head">
-                    <div class="card-title">StrinGO</div>
-                    <span class="card-tag archived">Archived</span>
-                  </div>
-                  <p class="card-text">
-                    StrinGO is a virtual instrument based on coupled waveguide models. These
-                    waveguides can be excited by four kinds of exciters: an external input, a basic
-                    waveform oscillator, white noise, and a crackling sound generator.
-                    Superseded by <a href="plugins.html#synths">MechanOdd</a>, a more powerful and
-                    modular successor: new projects should use that instead.
-                  </p>
-                  <div class="card-links">
-                    <a href="https://github.com/odoare/StrinGO" target="_blank" rel="noopener">Info on github</a>
-                    <a href="https://github.com/odoare/StrinGO/releases" target="_blank" rel="noopener">Pre-release download</a>
-                  </div>
+            <div class="card" data-category="effects" data-date="2025-12-17">
+              <a class="card-media" href="img/tear_screen.png" target="_blank">
+                <img src="img/tear_screen.png" alt="TeAr screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">TeAr</div>
+                  <span class="card-tag effects" data-filter="effects" role="button" tabindex="0" title="Filter by Effects">MIDI FX</span>
+                </div>
+                <p class="card-text">
+                  TeAr is an advanced polyrhythmic and polyphonic MIDI arpeggiator plugin. It
+                  features any number of independent arpeggiator engines, each with its own pattern,
+                  subdivision and MIDI output channel, enabling complex, evolving musical
+                  phrases and textures.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/TeAr" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/TeAr/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="files/TeAr-language-reference.pdf" target="_blank" rel="noopener">Pattern language reference</a>
+                  <a href="https://www.youtube.com/watch?v=__oc9Wncv1Y" target="_blank" rel="noopener">Demo video</a>
+                  <a href="https://www.youtube.com/watch?v=pWOuQep7nIs" target="_blank" rel="noopener">Tutorial</a>
                 </div>
               </div>
-
             </div>
+
+            <div class="card" data-category="tools" data-date="2025-12-06">
+              <a class="card-media" href="img/flappychord_screenshot.png" target="_blank">
+                <img src="img/flappychord_screenshot.png" alt="Flappy Chord screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">Flappy Chord</div>
+                  <span class="card-tag tools" data-filter="tools" role="button" tabindex="0" title="Filter by Tools">Learning tool</span>
+                </div>
+                <p class="card-text">
+                  Flappy Chord is a simple prototype of a musical game that reimagines the classic
+                  "Flappy Bird" formula as a fun tool for learning music. The bird is controlled by
+                  playing notes and chords on a connected MIDI keyboard.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/FlappyChord" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/FlappyChord/releases" target="_blank" rel="noopener">Download</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" data-category="effects" data-date="2025-11-05">
+              <a class="card-media" href="img/rhyga_screen.png" target="_blank">
+                <img src="img/rhyga_screen.png" alt="RhyGa screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">RhyGa</div>
+                  <span class="card-tag effects" data-filter="effects" role="button" tabindex="0" title="Filter by Effects">Effect</span>
+                </div>
+                <p class="card-text">
+                  RhyGa is a simple yet versatile rhythmic gate effect for your DAW. It creates
+                  tempo-synced patterns by modulating the volume of an incoming audio signal.
+                  With per-step controls for level, pan, duration and an auxiliary send, it turns
+                  static pads into pulsating rhythms, adds stutter effects on vocals, or dynamic
+                  movement to any track.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/RhyGa" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/RhyGa/releases" target="_blank" rel="noopener">Download</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" data-category="synths" data-date="2025-10-14">
+              <a class="card-media" href="img/lorenz_screen.png" target="_blank">
+                <img src="img/lorenz_screen.png" alt="Lorenz screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">Lorenz</div>
+                  <span class="card-tag synths" data-filter="synths" role="button" tabindex="0" title="Filter by Synths">Synth</span>
+                </div>
+                <p class="card-text">
+                  Lorenz is a unique software synthesizer that generates sound by simulating a
+                  modified version of the Lorenz attractor, a classic chaotic system. Instead of
+                  traditional oscillators, it uses the evolving state of the attractor to create
+                  complex, ever-changing, organic sounds.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/Lorenz" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/Lorenz/releases" target="_blank" rel="noopener">Pre-release download</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" data-category="synths" data-date="2025-09-29">
+              <a class="card-media" href="img/image-in_screen.png" target="_blank">
+                <img src="img/image-in_screen.png" alt="Image-In screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">Image-In</div>
+                  <span class="card-tag synths" data-filter="synths" role="button" tabindex="0" title="Filter by Synths">Synth</span>
+                </div>
+                <p class="card-text">
+                  Image-In is a virtual instrument based on an image buffer read by oscillators
+                  that follow a path across the image. LFOs and envelopes can modulate the path,
+                  and user images can be imported for even more sonic possibilities.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/Image-In" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/Image-In/releases" target="_blank" rel="noopener">Download</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" data-category="tools" data-date="2025-06-03">
+              <a class="card-media" href="img/moto_screen.png" target="_blank">
+                <img src="img/moto_screen.png" alt="MoTo screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">MoTo</div>
+                  <span class="card-tag tools" data-filter="tools" role="button" tabindex="0" title="Filter by Tools">Tool</span>
+                </div>
+                <p class="card-text">
+                  MoTo (Monitoring Tool) sits after the master track in your DAW to mimic
+                  hardware monitor controllers. It lets you switch between four stereo outputs
+                  and has mute/dim/solo buttons. Designed with Reaper in mind, but useful in
+                  other DAWs too.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/MoTo" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/MoTo/releases" target="_blank" rel="noopener">Latest release</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" data-category="effects" data-date="2024-10-16">
+              <a class="card-media" href="img/TripleDist_screen.png" target="_blank">
+                <img src="img/TripleDist_screen.png" alt="TripleDist screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">Triple Dist</div>
+                  <span class="card-tag effects" data-filter="effects" role="button" tabindex="0" title="Filter by Effects">Effect</span>
+                </div>
+                <p class="card-text">
+                  A filter/distortion plugin. The signal is split into three frequency bands
+                  (low, mid, high) via a state-variable filter. Each band is distorted and panned
+                  separately before being mixed back together, creating interesting spatialization
+                  effects as the cutoff frequency is varied.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/TripleDist" target="_blank" rel="noopener">Info on github</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" data-category="tools" data-date="2024-03-22">
+              <a class="card-media" href="img/pbg_screen.png" target="_blank">
+                <img src="img/pbg_screen.png" alt="PiWheeG screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">PiWheeG</div>
+                  <span class="card-tag tools" data-filter="tools" role="button" tabindex="0" title="Filter by Tools">MIDI tool</span>
+                </div>
+                <p class="card-text">
+                  PiWheeG (Pitch Wheel Gate) is a MIDI effect plugin that fixes a common problem
+                  with some hardware MIDI keyboards whose pitch wheel doesn't return exactly to zero.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/PiWheeG" target="_blank" rel="noopener">Info on github</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card is-archived" data-category="archived" data-date="2024-04-17">
+              <a class="card-media" href="img/BiRR_screen.png" target="_blank">
+                <img src="img/BiRR_screen.png" alt="BiRR screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">BiRR / AmbiRR</div>
+                  <span class="card-tag archived" data-filter="archived" role="button" tabindex="0" title="Filter by Old / Archived">Archived</span>
+                </div>
+                <p class="card-text">
+                  BiRR (and her ambisonic sister AmbiRR) were room simulators that emulated the
+                  sound produced by two monophonic sources perceived by a listener in a
+                  rectangular (2D) or parallelepipedic (3D) room, with adjustable room and
+                  source/listener positions, and stereo or first-order ambisonic output.
+                  Superseded by <a href="plugins.html#effects">AmbiRR2</a>, a full rewrite
+                  supporting up to 16 sources and 3rd-order ambisonic output: new projects
+                  should use that instead.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/BiRR" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/BiRR/releases" target="_blank" rel="noopener">Download</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card is-archived" data-category="archived" data-date="2024-04-16">
+              <a class="card-media" href="img/StrinGO_screen.png" target="_blank">
+                <img src="img/StrinGO_screen.png" alt="StrinGO screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">StrinGO</div>
+                  <span class="card-tag archived" data-filter="archived" role="button" tabindex="0" title="Filter by Old / Archived">Archived</span>
+                </div>
+                <p class="card-text">
+                  StrinGO is a virtual instrument based on coupled waveguide models. These
+                  waveguides can be excited by four kinds of exciters: an external input, a basic
+                  waveform oscillator, white noise, and a crackling sound generator.
+                  Superseded by <a href="plugins.html#synths">MechanOdd</a>, a more powerful and
+                  modular successor: new projects should use that instead.
+                </p>
+                <div class="card-links">
+                  <a href="https://github.com/odoare/StrinGO" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/StrinGO/releases" target="_blank" rel="noopener">Pre-release download</a>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
