@@ -84,6 +84,47 @@
                date, the data-category (releases / videos / music) and the link. -->
           <ul class="news-list">
 
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-10-30">2026-10-30</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/Camshaft/releases/tag/v0.1.0" target="_blank" rel="noopener">Camshaft v0.1.0</a>
+                </div>
+                <p>
+                  First release of Camshaft: a range wavetable synth plugin (VST3, CLAP, AU).
+                  Import any audio file, set up to four ranges (&ldquo;cams&rdquo;) on it, and play
+                  each range as an oscillator at the pitch of the note: the whole range is one wave cycle,
+                  regardless of length. Each cam has its own unison, two filters, amp envelope, mix
+                  and effect sends. Sixteen modulators (LFOs, envelopes, drawn curves) and MIDI sources
+                  can modulate any knob. The cams cross-modulate through a timing belt (FM, ring mod, AM,
+                  hard sync, opening modulation). Features two turbo effect chains and an exhaust master
+                  chain built with FxmeFX effects, plus a car-inspired dashboard interface. See it on the
+                  <a href="plugins.html#synths">plugins page</a>.
+                </p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-10-30">2026-10-30</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/TeAr/releases/tag/v0.5.0" target="_blank" rel="noopener">TeAr v0.5.0</a>
+                </div>
+                <p>
+                  Major update to the TeAr polyrhythmic MIDI arpeggiator. Introduces syntax&nbsp;3
+                  of the pattern language, shared across FX-Mechanics projects: chords (<code>{135}</code>),
+                  step durations (<code>m4</code> to <code>m64</code>, triplets), euclidean and binary
+                  rhythm generators, repeats, variations, and gate controls, with full backwards compatibility
+                  for existing presets. Now also built as a <strong>CLAP</strong> plugin alongside VST3
+                  and AU, and upgraded to JUCE&nbsp;9. An updated
+                  <a href="files/TeAr-language-reference.pdf" target="_blank" rel="noopener">pattern language reference PDF</a>
+                  is available. See it on the <a href="plugins.html#effects">plugins page</a>.
+                </p>
+              </div>
+            </li>
+
             <li class="news-item" data-category="music">
               <time datetime="2026-10-16">2026-10-16</time>
               <div class="news-body">
@@ -101,6 +142,25 @@
                   and in hi-res on <a href="https://www.prostudiomasters.com/album/page/568975" target="_blank" rel="noopener">ProStudioMasters</a>.
                   You can also preview tracks directly in the playbar up top, or visit the
                   <a href="music.html">music page</a>.
+                </p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-10-14">2026-10-14</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeFX/releases/tag/v0.5.1" target="_blank" rel="noopener">FxmeFX v0.5.1</a>
+                </div>
+                <p>
+                  Update to the FxmeFX effects collection, now expanded to 14 plugins with
+                  the new <strong>FxmeReverb</strong>: an algorithmic stereo reverb built on WDL's Freeverb
+                  engine with pre-delay, size, damping, width, filtering and robust protection against bad
+                  audio input. All plugins now feature a compact GUI mode for host plugin embedding (used
+                  inside Camshaft), support for the <strong>CLAP</strong> plugin format alongside VST3, AU,
+                  Standalone and Pure Data externals, and migration to JUCE&nbsp;9. See it on the
+                  <a href="plugins.html#effects">plugins page</a>.
                 </p>
               </div>
             </li>
