@@ -52,6 +52,8 @@
               <a href="plugins.html#archived"><span class="swatch" style="background:var(--text-faint)"></span>Old / Archived</a>
             </div>
           </li>
+          <li><a href="fxmenet.html" class="nav-link">FxmeNet</a></li>
+          <li><a href="supermoto.html" class="nav-link">SuperMoTo</a></li>
           <li><a href="music.html" class="nav-link">Music</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
@@ -92,6 +94,31 @@
           </p>
 
           <div class="grid">
+
+            <div class="card" data-category="tools" data-date="2026-11-12">
+              <a class="card-media" href="img/fxme-net-routing-screen.png" target="_blank">
+                <img src="img/fxme-net-routing-screen.png" alt="FxmeNet screenshot" loading="lazy" />
+              </a>
+              <div class="card-body">
+                <div class="card-head">
+                  <div class="card-title">FxmeNet</div>
+                  <span class="card-tag tools" data-filter="tools" role="button" tabindex="0" title="Filter by Tools">Tool</span>
+                </div>
+                <p class="card-text">
+                  FxmeNet lets your DAW run its effect plugins on another computer on the local network.
+                  Insert the FxmeNet plugin in your track (VST3, AU on macOS) and run a chain of effects
+                  on a dedicated server over UDP. Unlike video-streaming systems, plugin editors open
+                  locally, sending only audio and control data across the network.
+                </p>
+                <div class="card-links">
+                  <a href="fxmenet.html">FxmeNet page</a>
+                  <a href="https://github.com/odoare/FxmeNet" target="_blank" rel="noopener">Info on github</a>
+                  <a href="https://github.com/odoare/FxmeNet/releases" target="_blank" rel="noopener">Download</a>
+                  <a href="fxme-net-manual/html/index.html" target="_blank" rel="noopener" data-no-router>HTML manual</a>
+                  <a href="fxme-net-manual/fxmenet-manual.pdf" target="_blank" rel="noopener">PDF manual</a>
+                </div>
+              </div>
+            </div>
 
             <div class="card" data-category="synths" data-date="2026-10-30">
               <a class="card-media" href="img/camshaft.png" target="_blank">
@@ -160,12 +187,13 @@
                   <span class="card-tag effects" data-filter="effects" role="button" tabindex="0" title="Filter by Effects">Effect</span>
                 </div>
                 <p class="card-text">
-                  FxmeFX is a collection of 14 classic effects: compressor, six-band
+                  FxmeFX is a collection of 19 classic effects: compressor, six-band
                   parametric equalizer with spectrum display, tube saturation, transient
                   designer, stereo delay (free, tempo-synced or locked to the last MIDI
                   note), convolution reverb, algorithmic stereo reverb, cabinet IR loader,
-                  octaver, look-ahead limiter, spectral freeze, chorus, flanger and phaser.
-                  Each one comes with factory presets and a preset bar for your own.
+                  octaver, look-ahead limiter, spectral freeze, gate, de-esser, neural amp
+                  modeler, chorus, flanger and phaser. The entire suite is fully compatible
+                  with the <a href="fxmenet.html">FxmeNet</a> distributed network computing system.
                   Available as VST3, CLAP, AU, Standalone and Pure Data externals.
                 </p>
                 <div class="card-links">
@@ -188,6 +216,7 @@
                   SuperMoTo (The Super Monitoring Tool) puts a studio's monitoring signal chain into one plugin instance. Route up to 32 inputs to 32 outputs through a full matrix with per-crosspoint gain, EQ and polarity, apply per-output trim, EQ, time-alignment delay and zero-latency FIR room correction filters with automatic inter-output latency compensation, measure loudspeakers, align subwoofers phase-coherently, and decode Ambisonics up to 3rd order.
                 </p>
                 <div class="card-links">
+                  <a href="supermoto.html">SuperMoTo page</a>
                   <a href="https://github.com/odoare/SuperMoTo" target="_blank" rel="noopener">Info on github</a>
                   <a href="https://github.com/odoare/SuperMoTo/releases" target="_blank" rel="noopener">Download</a>
                   <a href="files/SuperMoTo.pdf" target="_blank" rel="noopener">User manual (PDF)</a>

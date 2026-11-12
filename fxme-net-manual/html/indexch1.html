@@ -1,0 +1,145 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>1 Introduction</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+<link href='fxmenet.css' rel='stylesheet' type='text/css' /> 
+<meta content='width=device-width, initial-scale=1' name='viewport' /> 
+</head><body>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch2.html'>next</a>] [<a href='indexli2.html'>prev</a>] [<a href='indexli2.html#tailindexli2.html'>prev-tail</a>] [<a href='#tailindexch1.html'>tail</a>] [<a href='index.html#indexch1.html'>up</a>] </p></div>
+  <h2 class='chapterHead'><span class='titlemark'>1</span>  <a id='x4-30001'></a>Introduction</h2>
+  <div class='sectionTOCS'>
+  <span class='sectionToc'>1.1  <a href='#x4-40001.1'>What FxmeNet is</a></span>
+<br />  <span class='sectionToc'>1.2  <a href='#x4-50001.2'>How it works</a></span>
+<br />  <span class='sectionToc'>1.3  <a href='#x4-60001.3'>What you see: native editors</a></span>
+<br />  <span class='sectionToc'>1.4  <a href='#x4-70001.4'>What FxmeNet is not</a></span>
+<br />  <span class='sectionToc'>1.5  <a href='#x4-80001.5'>What you need</a></span>
+<br />  <span class='sectionToc'>1.6  <a href='#x4-90001.6'>Terms used in this manual</a></span>
+  </div>
+  <h3 class='sectionHead'><span class='titlemark'>1.1</span>  <a id='x4-40001.1'></a>What FxmeNet is</h3>
+<!-- l. 6 --><p class='noindent'>FxmeNet lets your digital audio workstation (DAW) run its effects on another computer. In
+the DAW you insert one plugin, called <span class='ec-lmss-10x-x-109'>FxmeNet</span>. Behind it, a chain of plugins runs on a <span class='ec-lmri-10x-x-109'>server</span>
+(the program <span class='ec-lmtt-10x-x-109'>fxmenet-server</span>) on the same local network. The audio goes to the server and
+comes back; the DAW sees one ordinary plugin, and compensates the delay it reports, as it
+does for any plugin with latency.
+</p><!-- l. 13 --><p class='indent'>  The reason is simple: a session with many heavy plugins can exhaust the CPU of the
+computer that runs the DAW. A second machine, even an old one, can take that load. In our
+tests (chapter <a href='indexch7.html#x10-520007'>7<!-- tex4ht:ref: ch:performance  --></a>), 24 tracks with 17 plugins each used 75 % of the client’s processor when
+processed locally, and 20 to 25 % through FxmeNet.
+</p><!-- l. 19 --><p class='indent'>  The server is a console program. It needs no screen, no desktop session and no keyboard, so
+it can live in a cupboard or a rack, and it can run on a different operating system than the
+DAW.
+</p><!-- l. 23 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>1.2</span>  <a id='x4-50001.2'></a>How it works</h3>
+<!-- l. 25 --><p class='noindent'>FxmeNet has two parts.
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'>The <span class='ec-lmbx-10x-x-109'>client </span>is the <span class='ec-lmss-10x-x-109'>FxmeNet </span>plugin (VST3 and AU), loaded in the DAW. It has the
+     editor you work with.
+     </li>
+     <li class='itemize'>The  <span class='ec-lmbx-10x-x-109'>server </span>is  <span class='ec-lmtt-10x-x-109'>fxmenet-server</span>.  It  loads  the  VST3  plugins  you  ask  for  and
+     processes the audio.</li></ul>
+  <!-- l. 34 -->
+
+ <pre class='lstlisting' id='listing-1'><span class='label'><a id='x4-5001r1'></a></span><span style='color:#000000'>   <span class='ec-lmtt-10'>Your DAW (client)                          Server</span> 
+</span><span class='label'><a id='x4-5002r2'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>+---------------------+                +-------------------+</span> 
+</span><span class='label'><a id='x4-5003r3'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>|  track 1: FxmeNet --+--- audio UDP ---&gt;  session 1: chain |</span> 
+</span><span class='label'><a id='x4-5004r4'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>|                     &lt;--- audio UDP ---+  (plugin, plugin) |</span> 
+</span><span class='label'><a id='x4-5005r5'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>|  track 2: FxmeNet --+--- audio UDP ---&gt;  session 2: chain |</span> 
+</span><span class='label'><a id='x4-5006r6'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>|                     &lt;--- audio UDP ---+                   |</span> 
+</span><span class='label'><a id='x4-5007r7'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>|  every instance  ---+--- control TCP --&gt;  plugin list,    |</span> 
+</span><span class='label'><a id='x4-5008r8'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>|                     &lt;-------------------  parameters, ... |</span> 
+</span><span class='label'><a id='x4-5009r9'></a></span><span style='color:#000000'> <span class='ec-lmtt-10'>+---------------------+                +-------------------+</span></span></pre>
+ 
+<!-- l. 46 --><p class='indent'>  Each instance of <span class='ec-lmss-10x-x-109'>FxmeNet </span>in your project opens one <span class='ec-lmri-10x-x-109'>session </span>on the server, with its own
+chain of plugins. Two kinds of traffic flow:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'><span class='ec-lmbx-10x-x-109'>Audio</span>, in small blocks of N samples, over UDP, in both directions. A reply that
+     is late is replaced by a short fade to silence and back (the block is <span class='ec-lmri-10x-x-109'>concealed</span>); this
+     is how a network that is sometimes slow stays inaudible most of the time.
+     </li>
+     <li class='itemize'><span class='ec-lmbx-10x-x-109'>Control</span>, over TCP: the list of plugins, adding and removing plugins, parameters,
+     saving and restoring state.</li></ul>
+<!-- l. 58 --><p class='indent'>  The <span class='ec-lmri-10x-x-109'>network budget </span>D says how many blocks of time a reply has to come back. The latency
+that FxmeNet adds is about N times D samples, plus what the DAW’s own block size adds.
+Chapter <a href='indexch7.html#x10-520007'>7<!-- tex4ht:ref: ch:performance  --></a> explains how to choose them.
+</p><!-- l. 63 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>1.3</span>  <a id='x4-60001.3'></a>What you see: native editors</h3>
+<!-- l. 65 --><p class='noindent'>When you work on a plugin that sits on the server, you do not look at a picture of a remote
+window. If the same plugin is installed on the client computer, FxmeNet opens the plugin’s
+own editor locally, and keeps it in step with the copy on the server. Knobs respond at once,
+and the editor scales with your screen. If the plugin is made for FxmeNet (see chapter <a href='indexch9.html#x12-630009'>9<!-- tex4ht:ref: ch:developers  --></a>), its
+meters and analysers show the server’s real signal. Plugins that are not installed on
+the client still work, with a generic panel of sliders. These cases are the <span class='ec-lmri-10x-x-109'>tiers </span>of
+chapter <a href='indexch8.html#x11-580008'>8<!-- tex4ht:ref: ch:tiers  --></a>.
+</p><!-- l. 75 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>1.4</span>  <a id='x4-70001.4'></a>What FxmeNet is not</h3>
+                                                                                
+                                                                                
+     <ul class='itemize1'>
+     <li class='itemize'>It is not a way to play live through a very low latency. The added latency is a few
+     milliseconds at best (a few tens of milliseconds for heavy loads). It suits mixing
+     and production; for live monitoring, keep latency-critical plugins local.
+     </li>
+     <li class='itemize'>It is for a local network you control. The traffic is not encrypted and the server
+     does not ask for a password. Do not expose its ports to the internet.
+     </li>
+     <li class='itemize'>The server hosts VST3 <span class='ec-lmri-10x-x-109'>effects</span>. Instruments are not offered.
+     </li>
+     <li class='itemize'>It does not make plugins sound different: the server runs the same plugin code
+     your DAW would run.</li></ul>
+<!-- l. 90 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>1.5</span>  <a id='x4-80001.5'></a>What you need</h3>
+     <dl class='description'><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>A server.</span> </dt><dd class='description'>
+     <!-- l. 93 --><p class='noindent'>A computer with spare CPU and a wired network connection. Linux is the reference
+     platform (our tests use Ubuntu 24.04).
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>A client.</span> </dt><dd class='description'>
+     <!-- l. 97 --><p class='noindent'>A DAW on Windows, macOS or Linux that hosts VST3 (or AU on macOS). The
+     tests used Reaper on Windows.
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>A network.</span> </dt><dd class='description'>
+     <!-- l. 100 --><p class='noindent'>A wired gigabit network between the two machines. Wi-Fi works badly for audio.
+     A stereo track at 44.1 kHz uses about 3 Mbit/s in each direction (chapter <a href='indexch12.html#x15-8100012'>12<!-- tex4ht:ref: ch:network  --></a>).
+                                                                                
+                                                                                
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>The plugins.</span> </dt><dd class='description'>
+     <!-- l. 103 --><p class='noindent'>The plugins you want to run must be installed on the server. For their own editors
+     on the client, install the same version there too.</p></dd></dl>
+<!-- l. 108 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>1.6</span>  <a id='x4-90001.6'></a>Terms used in this manual</h3>
+     <dl class='description'><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>Block size N</span> </dt><dd class='description'>
+     <!-- l. 111 --><p class='noindent'>Samples sent to the server at a time (32 to 1024).
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>Network budget D</span> </dt><dd class='description'>
+     <!-- l. 112 --><p class='noindent'>Blocks of time allowed for a reply to come back (1 to 8).
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>Session</span> </dt><dd class='description'>
+     <!-- l. 114 --><p class='noindent'>One instance of the <span class='ec-lmss-10x-x-109'>FxmeNet </span>plugin, connected to the server, with its chain.
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>Chain</span> </dt><dd class='description'>
+     <!-- l. 116 --><p class='noindent'>The plugins of a session, processed in an order you choose, and optionally wired
+     by the routing (chapter <a href='indexch6.html#x9-450006'>6<!-- tex4ht:ref: ch:routing  --></a>).
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>Concealed block</span> </dt><dd class='description'>
+     <!-- l. 118 --><p class='noindent'>A block whose reply came too late, replaced by a short fade out and in.</p></dd></dl>
+<!-- l. 122 --><p class='noindent'>A fuller list is in the glossary (chapter <a href='indexch13.html#x16-8500013'>13<!-- tex4ht:ref: ch:glossary  --></a>).
+                                                                                
+                                                                                
+</p>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch2.html'>next</a>] [<a href='indexli2.html'>prev</a>] [<a href='indexli2.html#tailindexli2.html'>prev-tail</a>] [<a href='indexch1.html'>front</a>] [<a href='index.html#indexch1.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>  <a id='tailindexch1.html'></a>  </p> 
+</body> 
+</html>

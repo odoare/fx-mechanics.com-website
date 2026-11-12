@@ -787,7 +787,7 @@ nav.site-nav .logo { margin-right: auto; }
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   :root { --header-h: 112px; }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
@@ -838,4 +838,120 @@ main { animation: page-in 0.18s ease; }
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* ---------- Dedicated Tool Pages (FxmeNet & SuperMoTo) ---------- */
+.tool-header {
+  margin-bottom: 24px;
+}
+.tool-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 18px;
+}
+.tool-media {
+  margin: 28px 0 36px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.tool-media img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.tool-media-caption {
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  color: var(--text-faint);
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+}
+
+.text-section {
+  margin-top: 32px;
+  max-width: 54rem;
+}
+.text-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+.text-section p {
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+.text-section ul {
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0 0 16px 22px;
+}
+.text-section li {
+  margin-bottom: 6px;
+}
+
+.doc-frame-container {
+  margin-top: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.doc-frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.doc-frame-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.doc-frame {
+  width: 100%;
+  height: 800px;
+  border: none;
+  display: block;
+  background: #16181b;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  margin-top: 16px;
+  max-width: 54rem;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.data-table th, .data-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.data-table th {
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table td code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--bg-soft);
+  padding: 2px 5px;
+  border-radius: 3px;
 }

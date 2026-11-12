@@ -52,6 +52,8 @@
               <a href="plugins.html#archived"><span class="swatch" style="background:var(--text-faint)"></span>Old / Archived</a>
             </div>
           </li>
+          <li><a href="fxmenet.html" class="nav-link">FxmeNet</a></li>
+          <li><a href="supermoto.html" class="nav-link">SuperMoTo</a></li>
           <li><a href="music.html" class="nav-link">Music</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
@@ -83,6 +85,40 @@
           <!-- Newest first. To add an entry, copy one <li> block and edit the
                date, the data-category (releases / videos / music) and the link. -->
           <ul class="news-list">
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-11-12">2026-11-12</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeNet/releases/tag/v0.1.0" target="_blank" rel="noopener">FxmeNet release</a>
+                </div>
+                <p>
+                  First release of FxmeNet: an open-source tool to run DAW effect plugins on another
+                  computer over your local network. Insert the FxmeNet plugin (VST3, AU) in your DAW, and run
+                  a chain of VST3 effects on a dedicated server (<code>fxmenet-server</code>) over UDP.
+                  Plugin editors open locally on the client rather than streaming video. Accompanied by
+                  the <code>fxmenet-top</code> monitoring utility. See the <a href="fxmenet.html">FxmeNet page</a>
+                  or read the <a href="fxme-net-manual/html/index.html" target="_blank" rel="noopener" data-no-router>HTML manual</a>.
+                </p>
+              </div>
+            </li>
+
+            <li class="news-item" data-category="releases">
+              <time datetime="2026-11-12">2026-11-12</time>
+              <div class="news-body">
+                <div class="news-head">
+                  <span class="news-tag release">Release</span>
+                  <a class="news-title" href="https://github.com/odoare/FxmeFX/releases/tag/v0.6.0" target="_blank" rel="noopener">FxmeFX v0.6.0</a>
+                </div>
+                <p>
+                  Update of the FxmeFX effects collection, now 19 plugins, adding compatibility with
+                  <a href="fxmenet.html">FxmeNet</a>. Monitoring data (meters, oscilloscopes, spectrum displays)
+                  are sent to the client editor in real time when processing remotely. Also includes reworked
+                  presets and mono sample optimizations. See it on the <a href="plugins.html#effects">plugins page</a>.
+                </p>
+              </div>
+            </li>
 
             <li class="news-item" data-category="music">
               <time datetime="2026-11-01">2026-11-01</time>

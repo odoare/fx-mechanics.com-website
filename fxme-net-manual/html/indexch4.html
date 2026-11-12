@@ -1,0 +1,189 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>4 Monitoring with fxmenet-top</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+<link href='fxmenet.css' rel='stylesheet' type='text/css' /> 
+<meta content='width=device-width, initial-scale=1' name='viewport' /> 
+</head><body>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch5.html'>next</a>] [<a href='indexch3.html'>prev</a>] [<a href='indexch3.html#tailindexch3.html'>prev-tail</a>] [<a href='#tailindexch4.html'>tail</a>] [<a href='index.html#indexch4.html'>up</a>] </p></div>
+  <h2 class='chapterHead'><span class='titlemark'>4</span>  <a id='x7-270004'></a>Monitoring with <span class='ec-lmtt-10x-x-109'>fxmenet-top</span></h2>
+<!-- l. 4 --><p class='noindent'><span class='ec-lmtt-10x-x-109'>fxmenet-top </span>is a terminal program that shows what a server is doing, in the manner of <span class='ec-lmtt-10x-x-109'>top</span>.
+It runs on Linux, macOS and Windows 10 or later, in any terminal that understands
+ANSI escape sequences. It connects to the server’s control port as a monitor: it
+opens no session and never touches the audio, so it can be started and stopped at
+will.
+</p>
+  <div class='sectionTOCS'>
+  <span class='sectionToc'>4.1  <a href='#x7-280004.1'>Starting it</a></span>
+<br />  <span class='sectionToc'>4.2  <a href='#x7-290004.2'>The header</a></span>
+<br />  <span class='sectionToc'>4.3  <a href='#x7-300004.3'>Sessions</a></span>
+<br />  <span class='sectionToc'>4.4  <a href='#x7-310004.4'>Plugins and folders</a></span>
+<br />  <span class='sectionToc'>4.5  <a href='#x7-320004.5'>Log</a></span>
+<br />  <span class='sectionToc'>4.6  <a href='#x7-330004.6'>Keys</a></span>
+  </div>
+  <h3 class='sectionHead'><span class='titlemark'>4.1</span>  <a id='x7-280004.1'></a>Starting it</h3>
+  <!-- l. 12 -->
+
+ <pre class='lstlisting' id='listing-8'><span class='label'><a id='x7-28001r1'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>fxmenet</span></span><span style='color:#000000'><span class='ec-lmtt-10'>-</span></span><span style='color:#000000'><span class='ec-lmtt-10'>top</span></span><span style='color:#000000'>                      <span class='ec-lmtt-10'># the server on this machine</span> 
+</span><span class='label'><a id='x7-28002r2'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>fxmenet</span></span><span style='color:#000000'><span class='ec-lmtt-10'>-</span></span><span style='color:#000000'><span class='ec-lmtt-10'>top</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>192.168.1.20         # a server elsewhere (port 54322)</span> 
+</span><span class='label'><a id='x7-28003r3'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>fxmenet</span></span><span style='color:#000000'><span class='ec-lmtt-10'>-</span></span><span style='color:#000000'><span class='ec-lmtt-10'>top</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>studio.local:54322   # with a port</span> 
+</span><span class='label'><a id='x7-28004r4'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>fxmenet</span></span><span style='color:#000000'><span class='ec-lmtt-10'>-</span></span><span style='color:#000000'><span class='ec-lmtt-10'>top</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>--once               # print one frame without colours, and exit</span> 
+</span><span class='label'><a id='x7-28005r5'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>fxmenet</span></span><span style='color:#000000'><span class='ec-lmtt-10'>-</span></span><span style='color:#000000'><span class='ec-lmtt-10'>top</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>--find               # list the servers on the local network</span></span></pre>
+ 
+<!-- l. 20 --><p class='noindent'>If the server stops, <span class='ec-lmtt-10x-x-109'>fxmenet-top </span>says so and reconnects when it returns. To disable colours,
+set the environment variable <span class='ec-lmtt-10x-x-109'>NO_COLOR</span>.
+</p><!-- l. 23 --><p class='indent'>  <img alt='PIC' height='418' src='../img/fxme-net-top.png' width='418' />
+</p><!-- l. 26 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>4.2</span>  <a id='x7-290004.2'></a>The header</h3>
+<!-- l. 28 --><p class='noindent'>Two lines are always visible. The first gives the server’s name, version, system and uptime, the
+address, and whether you may change the plugin folders (<span class='ec-lmri-10x-x-109'>admin</span>) or only watch (<span class='ec-lmri-10x-x-109'>read only</span>).
+The second gives:
+</p>
+     <ul class='itemize1'>
+     <li class='itemize'><span class='ec-lmbx-10x-x-109'>CPU</span>: the machine’s total use, each core, and the server process’s use (100 % is
+     one core fully used, as in <span class='ec-lmtt-10x-x-109'>top</span>). Windows does not give the per-core figures.
+                                                                                
+                                                                                
+     </li>
+     <li class='itemize'><span class='ec-lmbx-10x-x-109'>MEM</span>: the server process’s memory.
+     </li>
+     <li class='itemize'><span class='ec-lmbx-10x-x-109'>NET</span>: the audio traffic received and sent.</li></ul>
+<!-- l. 40 --><p class='indent'>  Below them, three views are selected with <span class='fbox'><span class='ec-lmtt-10x-x-109'>1</span></span>, <span class='fbox'><span class='ec-lmtt-10x-x-109'>2</span></span> and <span class='fbox'><span class='ec-lmtt-10x-x-109'>3</span></span> (or the left and right arrows).
+</p><!-- l. 43 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>4.3</span>  <a id='x7-300004.3'></a>Sessions</h3>
+  <div class='fbox'><span class='ec-lmtt-10x-x-109'>1</span></div>
+<!-- l. 45 --><p class='indent'>  . One line per client session: its name and system, its address, the format (sample rate and
+block size), the number of plugins, a bar for the load, the traffic, and the counts of late, lost
+and stale blocks. The load bar compares the worst processing time of the last second with
+the block’s duration: green is comfortable, yellow is getting tight, red means the
+server is close to missing deadlines. A count that has just moved turns red for ten
+seconds.
+</p><!-- l. 53 --><p class='indent'>  Choose a session with the up and down arrows. Under the list, the details show the format,
+whether the audio thread has real-time priority, the processing times, all the counters, and the
+session’s chain with each plugin’s version, vendor and latency. The latest log lines fill the rest
+of the screen.
+</p><!-- l. 59 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>4.4</span>  <a id='x7-310004.4'></a>Plugins and folders</h3>
+  <div class='fbox'><span class='ec-lmtt-10x-x-109'>2</span></div>
+<!-- l. 61 --><p class='indent'>  . The folders the server searches (default, saved, and given on the command line), with
+missing ones marked; the progress of the scan in progress; and the plugins found,
+sorted by name. Press <span class='fbox'><span class='ec-lmtt-10x-x-109'>/</span></span> to filter them, as in the plugin’s own list; <span class='fbox'><span class='ec-lmtt-10x-x-109'>Esc</span></span> clears the
+filter.
+</p><!-- l. 66 --><p class='indent'>  When you are allowed to (<span class='ec-lmri-10x-x-109'>admin</span>), these keys change the folders:
+</p><!-- l. 68 --><p class='indent'>
+<a id='x7-31001r1'></a></p>  <!-- l. 70 --><div class='longtable'> <table class='longtable' id='TBL-3'><colgroup id='TBL-3-1g'><col id='TBL-3-1' /><col id='TBL-3-2' /></colgroup>
+                                                                                
+                                                                                
+<tr id='TBL-3-1-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-3-1-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-3-2-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-2-1' style='white-space:normal; text-align:left;'>
+<!-- l. 70 --><p class='noindent'><span class='ec-lmbx-10x-x-109'>Key</span>               </p></td><td class='td10' id='TBL-3-2-2' style='white-space:normal; text-align:left;'>
+<!-- l. 70 --><p class='noindent'><span class='ec-lmbx-10x-x-109'>Action</span>                                                                 </p></td>
+</tr><tr id='TBL-3-3-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-3-3-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-3-4-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-4-1' style='white-space:normal; text-align:left;'>
+<!-- l. 72 --><p class='noindent'>               </p></td>
+</tr><tr id='TBL-3-5-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-5-1' style='white-space:normal; text-align:left;'>                </td><td class='td10' id='TBL-3-5-2' style='white-space:normal; text-align:left;'></td></tr>
+<tr id='TBL-3-6-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-6-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>a</span></div>
+<!-- l. 73 --><p class='noindent'>               </p></td><td class='td10' id='TBL-3-6-2' style='white-space:normal; text-align:left;'>
+<!-- l. 73 --><p class='noindent'>Add a folder (type an absolute path on the server, then <span class='fbox'><span class='ec-lmtt-10x-x-109'>Return</span></span>).</p></td>
+</tr><tr id='TBL-3-7-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-7-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>d</span></div>
+<!-- l. 74 --><p class='noindent'>               </p></td><td class='td10' id='TBL-3-7-2' style='white-space:normal; text-align:left;'>
+<!-- l. 74 --><p class='noindent'>Remove the selected saved folder.                                         </p></td>
+</tr><tr id='TBL-3-8-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-8-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>x</span></div>
+<!-- l. 75 --><p class='noindent'>               </p></td><td class='td10' id='TBL-3-8-2' style='white-space:normal; text-align:left;'>
+<!-- l. 75 --><p class='noindent'>Turn the default VST3 folders on or off.                                </p></td>
+</tr><tr id='TBL-3-9-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-9-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>r</span></div>
+<!-- l. 76 --><p class='noindent'>               </p></td><td class='td10' id='TBL-3-9-2' style='white-space:normal; text-align:left;'>
+<!-- l. 76 --><p class='noindent'>Rescan: new or changed plugins only.                                    </p></td>
+</tr><tr id='TBL-3-10-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-10-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>R</span></div>
+<!-- l. 77 --><p class='noindent'>               </p></td><td class='td10' id='TBL-3-10-2' style='white-space:normal; text-align:left;'>
+<!-- l. 77 --><p class='noindent'>Full rescan, ignoring the cache.                                            </p></td>
+</tr><tr id='TBL-3-11-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-11-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>Tab</span></div>
+<!-- l. 78 --><p class='noindent'>               </p></td><td class='td10' id='TBL-3-11-2' style='white-space:normal; text-align:left;'>
+<!-- l. 78 --><p class='noindent'>Move between the list of folders and the list of plugins.            </p></td>
+</tr><tr id='TBL-3-12-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-3-12-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-3-15-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-15-1' style='white-space:normal; text-align:left;'>
+<!-- l. 80 --><p class='noindent'>               </p></td>
+</tr><tr id='TBL-3-16-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-16-1' style='white-space:normal; text-align:left;'>
+<!-- l. 80 --><p class='noindent'>               </p></td>
+</tr><tr id='TBL-3-17-' style='vertical-align:baseline;'><td class='td01' id='TBL-3-17-1' style='white-space:normal; text-align:left;'>
+<!-- l. 80 --><p class='noindent'>               </p></td>
+  </tr>
+  </table></div>
+<!-- l. 82 --><p class='indent'>  The scan runs in the background and its progress appears at once. Folders you add are kept
+by the server for its next runs.
+</p><!-- l. 85 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>4.5</span>  <a id='x7-320004.5'></a>Log</h3>
+  <div class='fbox'><span class='ec-lmtt-10x-x-109'>3</span></div>
+<!-- l. 87 --><p class='indent'>  . The server’s log, with the latest lines at the bottom. Scroll with the arrows, <span class='fbox'><span class='ec-lmtt-10x-x-109'>PgUp</span></span> and
+<span class='fbox'><span class='ec-lmtt-10x-x-109'>PgDn</span></span>; <span class='fbox'><span class='ec-lmtt-10x-x-109'>End</span></span> follows the newest line again. Lines that contain <span class='ec-lmri-10x-x-109'>error</span>, <span class='ec-lmri-10x-x-109'>warning </span>or <span class='ec-lmri-10x-x-109'>skipped </span>are red. <span class='fbox'><span class='ec-lmtt-10x-x-109'>/</span></span>
+filters the lines.
+                                                                                
+                                                                                
+</p><!-- l. 92 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>4.6</span>  <a id='x7-330004.6'></a>Keys</h3>
+<!-- l. 94 --><p class='noindent'>
+<a id='x7-33001r2'></a></p>  <!-- l. 96 --><div class='longtable'> <table class='longtable' id='TBL-4'><colgroup id='TBL-4-1g'><col id='TBL-4-1' /><col id='TBL-4-2' /></colgroup>
+<tr id='TBL-4-1-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-4-1-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-4-2-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-2-1' style='white-space:normal; text-align:left;'>
+<!-- l. 96 --><p class='noindent'><span class='ec-lmbx-10x-x-109'>Key</span>                       </p></td><td class='td10' id='TBL-4-2-2' style='white-space:normal; text-align:left;'>
+<!-- l. 96 --><p class='noindent'><span class='ec-lmbx-10x-x-109'>Action</span>                                                         </p></td>
+</tr><tr id='TBL-4-3-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-4-3-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-4-4-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-4-1' style='white-space:normal; text-align:left;'>
+<!-- l. 98 --><p class='noindent'>                    </p></td>
+</tr><tr id='TBL-4-5-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-5-1' style='white-space:normal; text-align:left;'>                      </td><td class='td10' id='TBL-4-5-2' style='white-space:normal; text-align:left;'></td></tr>
+<tr id='TBL-4-6-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-6-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>1</span></div>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>2</span></div>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>3</span></div>
+<!-- l. 99 --><p class='noindent'>or arrows                    </p></td><td class='td10' id='TBL-4-6-2' style='white-space:normal; text-align:left;'>
+<!-- l. 99 --><p class='noindent'>Choose the view.                                                     </p></td>
+</tr><tr id='TBL-4-7-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-7-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>Up</span></div>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>Down</span></div>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>PgUp</span></div>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>PgDn</span></div>
+<!-- l. 100 --><p class='noindent'>                    </p></td><td class='td10' id='TBL-4-7-2' style='white-space:normal; text-align:left;'>
+<!-- l. 100 --><p class='noindent'>Move in the list.                                                      </p></td>
+</tr><tr id='TBL-4-8-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-8-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>Home</span></div>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>End</span></div>
+<!-- l. 101 --><p class='noindent'>                    </p></td><td class='td10' id='TBL-4-8-2' style='white-space:normal; text-align:left;'>
+<!-- l. 101 --><p class='noindent'>First or last entry (in the log, the newest).                    </p></td>
+</tr><tr id='TBL-4-9-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-9-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>/</span></div>
+<!-- l. 102 --><p class='noindent'>                    </p></td><td class='td10' id='TBL-4-9-2' style='white-space:normal; text-align:left;'>
+<!-- l. 102 --><p class='noindent'>Filter the plugins or the log.                                      </p></td>
+</tr><tr id='TBL-4-10-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-10-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>Esc</span></div>
+<!-- l. 103 --><p class='noindent'>                    </p></td><td class='td10' id='TBL-4-10-2' style='white-space:normal; text-align:left;'>
+<!-- l. 103 --><p class='noindent'>Clear the filter, or cancel typing.                                 </p></td>
+</tr><tr id='TBL-4-11-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-11-1' style='white-space:normal; text-align:left;'>
+<div class='fbox'><span class='ec-lmtt-10x-x-109'>q</span></div>
+<!-- l. 104 --><p class='noindent'>                    </p></td><td class='td10' id='TBL-4-11-2' style='white-space:normal; text-align:left;'>
+<!-- l. 104 --><p class='noindent'>Quit.                                                                     </p></td>
+</tr><tr id='TBL-4-12-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-4-12-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-4-15-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-15-1' style='white-space:normal; text-align:left;'>
+<!-- l. 106 --><p class='noindent'>                    </p></td>
+</tr><tr id='TBL-4-16-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-16-1' style='white-space:normal; text-align:left;'>
+<!-- l. 106 --><p class='noindent'>                    </p></td>
+</tr><tr id='TBL-4-17-' style='vertical-align:baseline;'><td class='td01' id='TBL-4-17-1' style='white-space:normal; text-align:left;'>
+<!-- l. 106 --><p class='noindent'>                    </p></td>
+                                                                                
+                                                                                
+  </tr>
+  </table></div>
+                                                                                
+                                                                                
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch5.html'>next</a>] [<a href='indexch3.html'>prev</a>] [<a href='indexch3.html#tailindexch3.html'>prev-tail</a>] [<a href='indexch4.html'>front</a>] [<a href='index.html#indexch4.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>  <a id='tailindexch4.html'></a>  </p> 
+</body> 
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>9 For plugin developers</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+<link href='fxmenet.css' rel='stylesheet' type='text/css' /> 
+<meta content='width=device-width, initial-scale=1' name='viewport' /> 
+</head><body>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch10.html'>next</a>] [<a href='indexch8.html'>prev</a>] [<a href='indexch8.html#tailindexch8.html'>prev-tail</a>] [<a href='#tailindexch9.html'>tail</a>] [<a href='index.html#indexch9.html'>up</a>] </p></div>
+  <h2 class='chapterHead'><span class='titlemark'>9</span>  <a id='x12-630009'></a>For plugin developers</h2>
+<!-- l. 4 --><p class='noindent'>FxmeNet runs any VST3 effect. A plugin can also be made <span class='ec-lmri-10x-x-109'>FxmeNet-aware</span>, and then it gets
+tier <span class='ec-lmss-10x-x-109'>T2 </span>(chapter <a href='indexch8.html#x11-580008'>8<!-- tex4ht:ref: ch:tiers  --></a>): its editor on the client shows the live meters, spectra and values of the
+copy that runs on the server. This chapter summarises what that takes. The reference is the
+file <span class='ec-lmtt-10x-x-109'>fxmenet-howto.md </span>of FxmeTools, with the demonstration plugin <span class='ec-lmtt-10x-x-109'>Examples/GainPan</span>
+in the FxmeNet source.
+</p>
+  <div class='sectionTOCS'>
+  <span class='sectionToc'>9.1  <a href='#x12-640009.1'>The idea</a></span>
+<br />  <span class='sectionToc'>9.2  <a href='#x12-650009.2'>What to do</a></span>
+<br />  <span class='sectionToc'>9.3  <a href='#x12-660009.3'>Checking</a></span>
+<br />  <span class='sectionToc'>9.4  <a href='#x12-670009.4'>The FxmeNet compatible mark</a></span>
+  </div>
+  <h3 class='sectionHead'><span class='titlemark'>9.1</span>  <a id='x12-640009.1'></a>The idea</h3>
+<!-- l. 13 --><p class='noindent'>The plugin is loaded twice: a <span class='ec-lmri-10x-x-109'>source </span>on the server, which processes audio, and a
+<span class='ec-lmri-10x-x-109'>mirror </span>on the client, which never processes and shows the editor. What the editor
+reads that is not a parameter (a meter, a spectrum, a computed value) is sent from
+the source to the mirror as telemetry and written into the mirror’s own objects, so
+the editor itself does not change. Outside FxmeNet the plugin behaves exactly as
+before.
+</p><!-- l. 20 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>9.2</span>  <a id='x12-650009.2'></a>What to do</h3>
+<!-- l. 23 --><p class='noindent'>
+     </p><dl class='enumerate-enumitem'><dt class='enumerate-enumitem'>
+   1. </dt><dd class='enumerate-enumitem'>Add   an   <span class='ec-lmtt-10x-x-109'>fxme::net::NetBridge  </span>to   the   processor,   and   return   it   from
+     <span class='ec-lmtt-10x-x-109'>getVST3ClientExtensions()</span>.
+     </dd><dt class='enumerate-enumitem'>
+   2. </dt><dd class='enumerate-enumitem'>Register everything the editor reads that is not a parameter, with a stable name
+     each: meters, taps, atomics, computed scalars.
+     </dd><dt class='enumerate-enumitem'>
+   3. </dt><dd class='enumerate-enumitem'>In the few getters that compute from the DSP, return the telemetry value when
+     the plugin is a mirror.
+     </dd><dt class='enumerate-enumitem'>
+   4. </dt><dd class='enumerate-enumitem'>Skip the work that only feeds the DSP when the plugin is a mirror.
+                                                                                
+                                                                                
+     </dd><dt class='enumerate-enumitem'>
+   5. </dt><dd class='enumerate-enumitem'>Call <span class='ec-lmtt-10x-x-109'>notifyStateChanged() </span>when state that is not a parameter changes (a loaded
+     file, for example).</dd></dl>
+  <!-- l. 34 -->
+
+ <pre class='lstlisting' id='listing-13'><span class='label'><a id='x12-65006r1'></a></span><span style='color:#077670'><span class='ec-lmtk-10'>#</span></span><span style='color:#077670'><span class='ec-lmtk-10'>include</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>&lt;FxmeTools/net/NetBridge.h&gt;</span> 
+</span><span class='label'><a id='x12-65007r2'></a></span> 
+<span class='label'><a id='x12-65008r3'></a></span><span style='color:#077670'><span class='ec-lmtk-10'>class</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>MyProcessor :</span> </span><span style='color:#077670'><span class='ec-lmtk-10'>public</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>juce::AudioProcessor</span> 
+</span><span class='label'><a id='x12-65009r4'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>{</span></span> 
+<span class='label'><a id='x12-65010r5'></a></span><span style='color:#077670'><span class='ec-lmtk-10'>public</span></span><span style='color:#000000'><span class='ec-lmtt-10'>:</span></span> 
+<span class='label'><a id='x12-65011r6'></a></span><span style='color:#000000'>    <span class='ec-lmtt-10'>juce::VST3ClientExtensions* getVST3ClientExtensions() override {</span> </span><span style='color:#077670'><span class='ec-lmtk-10'>return</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>&amp;net; }</span> 
+</span><span class='label'><a id='x12-65012r7'></a></span><span style='color:#077670'><span class='ec-lmtk-10'>private</span></span><span style='color:#000000'><span class='ec-lmtt-10'>:</span></span> 
+<span class='label'><a id='x12-65013r8'></a></span><span style='color:#000000'>    <span class='ec-lmtt-10'>Compressor compressor;</span> 
+</span><span class='label'><a id='x12-65014r9'></a></span><span style='color:#000000'>    <span class='ec-lmtt-10'>fxme::net::NetBridge net;</span>   </span><span style='color:#808080'><span class='ec-lmtti-10'>//</span></span><span style='color:#808080'> <span class='ec-lmtti-10'>after everything it registers</span> 
+</span><span class='label'><a id='x12-65015r10'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>};</span></span> 
+<span class='label'><a id='x12-65016r11'></a></span> 
+<span class='label'><a id='x12-65017r12'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>MyProcessor</span></span><span style='color:#000000'><span class='ec-lmtt-10'>::</span></span><span style='color:#000000'><span class='ec-lmtt-10'>MyProcessor</span></span><span style='color:#000000'><span class='ec-lmtt-10'>()</span></span> 
+<span class='label'><a id='x12-65018r13'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>{</span></span> 
+<span class='label'><a id='x12-65019r14'></a></span><span style='color:#000000'>    <span class='ec-lmtt-10'>net.telemetry().addMeter ("gr", compressor.getGrMeter());</span> 
+</span><span class='label'><a id='x12-65020r15'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>}</span></span></pre>
+ 
+<!-- l. 52 --><p class='noindent'>
+<a id='x12-65021r1'></a></p>  <!-- l. 54 --><div class='longtable'> <table class='longtable' id='TBL-8'><colgroup id='TBL-8-1g'><col id='TBL-8-1' /><col id='TBL-8-2' /></colgroup>
+<tr id='TBL-8-1-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-8-1-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-8-2-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-2-1' style='white-space:normal; text-align:left;'>
+<!-- l. 54 --><p class='noindent'><span class='ec-lmbx-10x-x-109'>The editor reads</span>            </p></td><td class='td10' id='TBL-8-2-2' style='white-space:normal; text-align:left;'>
+<!-- l. 54 --><p class='noindent'><span class='ec-lmbx-10x-x-109'>Register</span>                                                 </p></td>
+</tr><tr id='TBL-8-3-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-8-3-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-8-4-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-4-1' style='white-space:normal; text-align:left;'>
+<!-- l. 56 --><p class='noindent'>                         </p></td>
+</tr><tr id='TBL-8-5-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-5-1' style='white-space:normal; text-align:left;'>                           </td><td class='td10' id='TBL-8-5-2' style='white-space:normal; text-align:left;'></td></tr>
+<tr id='TBL-8-6-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-6-1' style='white-space:normal; text-align:left;'>
+<!-- l. 57 --><p class='noindent'>a level meter                      </p></td><td class='td10' id='TBL-8-6-2' style='white-space:normal; text-align:left;'>
+<!-- l. 57 --><p class='noindent'><span class='ec-lmtt-10x-x-109'>addMeter (name, meter)</span>                      </p></td>
+</tr><tr id='TBL-8-7-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-7-1' style='white-space:normal; text-align:left;'>
+<!-- l. 58 --><p class='noindent'>a spectrum or waveform tap  </p></td><td class='td10' id='TBL-8-7-2' style='white-space:normal; text-align:left;'>
+<!-- l. 58 --><p class='noindent'><span class='ec-lmtt-10x-x-109'>addTap (name, tap)</span>                          </p></td>
+</tr><tr id='TBL-8-8-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-8-1' style='white-space:normal; text-align:left;'>
+<!-- l. 59 --><p class='noindent'>a <span class='ec-lmtt-10x-x-109'>std::atomic&lt;float&gt;</span>     </p></td><td class='td10' id='TBL-8-8-2' style='white-space:normal; text-align:left;'>
+<!-- l. 59 --><p class='noindent'><span class='ec-lmtt-10x-x-109'>addValue (name, atomic)</span>                     </p></td>
+</tr><tr id='TBL-8-9-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-9-1' style='white-space:normal; text-align:left;'>
+<!-- l. 60 --><p class='noindent'>a  function  that  computes  a
+value                                </p></td><td class='td10' id='TBL-8-9-2' style='white-space:normal; text-align:left;'>
+<!-- l. 60 --><p class='noindent'><span class='ec-lmtt-10x-x-109'>addScalar (name, getter)</span>                    </p></td>
+</tr><tr id='TBL-8-10-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-10-1' style='white-space:normal; text-align:left;'>
+<!-- l. 61 --><p class='noindent'>a read-and-reset function      </p></td><td class='td10' id='TBL-8-10-2' style='white-space:normal; text-align:left;'>
+<!-- l. 61 --><p class='noindent'><span class='ec-lmtt-10x-x-109'>addPeak (name, function)</span>                    </p></td>
+</tr><tr id='TBL-8-11-' style='vertical-align:baseline;'><td class='td01' colspan='2' id='TBL-8-11-1' style='white-space:normal; text-align:left;'></td></tr><tr id='TBL-8-14-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-14-1' style='white-space:normal; text-align:left;'>
+<!-- l. 63 --><p class='noindent'>                         </p></td>
+</tr><tr id='TBL-8-15-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-15-1' style='white-space:normal; text-align:left;'>
+<!-- l. 63 --><p class='noindent'>                         </p></td>
+</tr><tr id='TBL-8-16-' style='vertical-align:baseline;'><td class='td01' id='TBL-8-16-1' style='white-space:normal; text-align:left;'>
+<!-- l. 63 --><p class='noindent'>                         </p></td>
+  </tr>
+  </table></div>
+<!-- l. 65 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>9.3</span>  <a id='x12-660009.3'></a>Checking</h3>
+<!-- l. 67 --><p class='noindent'>The FxmeNet source includes a test tool, <span class='ec-lmtt-10x-x-109'>FxmeNetLoopback</span>, which loads your plugin twice in
+one process, as source and mirror, and pumps the telemetry between them. Both editors
+                                                                                
+                                                                                
+appear side by side; the mirror’s meters must follow the source’s.
+</p>
+  <!-- l. 72 -->
+
+ <pre class='lstlisting' id='listing-14'><span class='label'><a id='x12-66001r1'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>FxmeNetLoopback</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>path/to/MyPlugin.vst3</span></span></pre>
+ 
+<!-- l. 76 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>9.4</span>  <a id='x12-670009.4'></a>The FxmeNet compatible mark</h3>
+<!-- l. 79 --><p class='noindent'>Plugins that support FxmeNet may carry the FxmeNet mark, so that users know the plugin
+gives a tier <span class='ec-lmss-10x-x-109'>T2 </span>experience.
+</p>
+<div class='center'>
+<!-- l. 82 --><p class='noindent'>
+</p><!-- l. 83 --><p class='noindent'><img alt='FxmeNet logo' height='117' src='FxmeNetLogo3.jpg' width='117' />      <img alt='FxmeNet icon' height='33' src='fxmenet-logo.png' width='33' /></p></div>
+<!-- l. 92 --><p class='indent'>  <span class='todo'>[TODO: The two marks above are drafts (a connector-shaped logo and a small icon).
+Decide the final design and supply it as SVG and as transparent PNG in several
+sizes. Write the conditions of use: what a plugin must do to carry it (for example,
+that it passes the Loopback check and that its editor works as a mirror), where
+to show it (website, manual, plugin’s information panel), and the licence of the
+artwork.]</span>
+                                                                                
+                                                                                
+</p>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch10.html'>next</a>] [<a href='indexch8.html'>prev</a>] [<a href='indexch8.html#tailindexch8.html'>prev-tail</a>] [<a href='indexch9.html'>front</a>] [<a href='index.html#indexch9.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>  <a id='tailindexch9.html'></a>  </p> 
+</body> 
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>10 Troubleshooting</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+<link href='fxmenet.css' rel='stylesheet' type='text/css' /> 
+<meta content='width=device-width, initial-scale=1' name='viewport' /> 
+</head><body>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch11.html'>next</a>] [<a href='indexch9.html'>prev</a>] [<a href='indexch9.html#tailindexch9.html'>prev-tail</a>] [<a href='#tailindexch10.html'>tail</a>] [<a href='index.html#indexch10.html'>up</a>] </p></div>
+  <h2 class='chapterHead'><span class='titlemark'>10</span>  <a id='x13-6800010'></a>Troubleshooting</h2>
+  <div class='sectionTOCS'>
+  <span class='sectionToc'>10.1  <a href='#x13-6900010.1'>The plugin does not find the server</a></span>
+<br />  <span class='sectionToc'>10.2  <a href='#x13-7000010.2'>The plugin I want is not in the list</a></span>
+<br />  <span class='sectionToc'>10.3  <a href='#x13-7100010.3'>A plugin shows tier <span class='ec-lmss-10x-x-109'>T0 </span>when I expected <span class='ec-lmss-10x-x-109'>T1</span></a></span>
+<br />  <span class='sectionToc'>10.4  <a href='#x13-7200010.4'>Concealed blocks, dropouts or clicks</a></span>
+<br />  <span class='sectionToc'>10.5  <a href='#x13-7300010.5'>Silence at start, stop or jump</a></span>
+<br />  <span class='sectionToc'>10.6  <a href='#x13-7400010.6'>The audio is late compared with other tracks</a></span>
+<br />  <span class='sectionToc'>10.7  <a href='#x13-7500010.7'>Everything stops when the server restarts</a></span>
+  </div>
+  <h3 class='sectionHead'><span class='titlemark'>10.1</span>  <a id='x13-6900010.1'></a>The plugin does not find the server</h3>
+     <ul class='itemize1'>
+     <li class='itemize'>Is the server running? On its machine, <span class='ec-lmtt-10x-x-109'>fxmenet-top </span>should show it. If not, start
+     <span class='ec-lmtt-10x-x-109'>fxmenet-server</span>.
+     </li>
+     <li class='itemize'>Does <span class='ec-lmss-10x-x-109'>Find </span>show nothing? Discovery uses a broadcast, which does not cross routers
+     or most VPNs, and is blocked by some firewalls. Type the server’s address in the
+     field instead.
+     </li>
+     <li class='itemize'>Can the client reach the server’s ports? Check the firewall on the server (TCP
+     54322, UDP 54321 and 54320) and, on the client, that the DAW is allowed to use
+     the network.
+     </li>
+     <li class='itemize'>Is a second server running on the same machine? Only one can answer <span class='ec-lmss-10x-x-109'>Find</span>; give
+     the other one a different port set, or no discovery.</li></ul>
+<!-- l. 19 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>10.2</span>  <a id='x13-7000010.2'></a>The plugin I want is not in the list</h3>
+                                                                                
+                                                                                
+     <ul class='itemize1'>
+     <li class='itemize'>It must be a VST3 <span class='ec-lmri-10x-x-109'>effect </span>installed on the server, in a folder the server searches
+     (section <a href='indexch3.html#x6-210003.3'>3.3<!-- tex4ht:ref: sec:folders  --></a>).
+     </li>
+     <li class='itemize'>Look at the server’s log (or the <span class='fbox'><span class='ec-lmtt-10x-x-109'>3</span></span> view of <span class='ec-lmtt-10x-x-109'>fxmenet-top</span>) for “skipped”: a plugin
+     that crashed or hung when loaded is left out until it changes.
+     </li>
+     <li class='itemize'>You installed it while the server ran: rescan with <span class='fbox'><span class='ec-lmtt-10x-x-109'>r</span></span> in <span class='ec-lmtt-10x-x-109'>fxmenet-top</span>, then reconnect
+     the plugin.
+     </li>
+     <li class='itemize'>The list is filtered: clear the <span class='ec-lmss-10x-x-109'>Filter </span>field.</li></ul>
+<!-- l. 32 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>10.3</span>  <a id='x13-7100010.3'></a>A plugin shows tier <span class='ec-lmss-10x-x-109'>T0 </span>when I expected <span class='ec-lmss-10x-x-109'>T1</span></h3>
+<!-- l. 34 --><p class='noindent'>The plugin must be installed on the client, in a folder the client scans, in the same
+version. Hover over the row for the reason. Use <span class='ec-lmss-10x-x-109'>Rescan </span>or <span class='ec-lmss-10x-x-109'>Folders… </span>in the <span class='ec-lmss-10x-x-109'>Settings </span>tab
+(chapter <a href='indexch8.html#x11-580008'>8<!-- tex4ht:ref: ch:tiers  --></a>).
+</p><!-- l. 38 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>10.4</span>  <a id='x13-7200010.4'></a>Concealed blocks, dropouts or clicks</h3>
+<!-- l. 40 --><p class='noindent'>Look at where the problem is.
+</p><!-- l. 43 --><p class='indent'>
+     </p><dl class='enumerate-enumitem'><dt class='enumerate-enumitem'>
+   1. </dt><dd class='enumerate-enumitem'>In <span class='ec-lmtt-10x-x-109'>fxmenet-top</span>, is the server’s CPU high, or a session’s load bar red? Then the
+     server is overloaded: use larger blocks (1024<span class='lmsy-10x-x-109'>×</span>2), reduce the load, or use a faster
+     server.
+     </dd><dt class='enumerate-enumitem'>
+   2. </dt><dd class='enumerate-enumitem'>Does a session’s <span class='ec-lmri-10x-x-109'>lost </span>count rise? Requests do not reach the server in time: look at
+     the network (wired? other traffic? a switch that drops packets?).
+                                                                                
+                                                                                
+     </dd><dt class='enumerate-enumitem'>
+   3. </dt><dd class='enumerate-enumitem'>Does <span class='ec-lmri-10x-x-109'>send errors </span>rise in the server’s log? The kernel drops replies: raise the socket
+     buffers (section <a href='indexch7.html#x10-560007.4'>7.4<!-- tex4ht:ref: sec:linuxtuning  --></a>).
+     </dd><dt class='enumerate-enumitem'>
+   4. </dt><dd class='enumerate-enumitem'>Do the threads show <span class='ec-lmtt-10x-x-109'>TS </span>instead of <span class='ec-lmtt-10x-x-109'>RR </span>in the check of section <a href='indexch7.html#x10-560007.4'>7.4<!-- tex4ht:ref: sec:linuxtuning  --></a>? Give the audio
+     threads real-time priority.
+     </dd><dt class='enumerate-enumitem'>
+   5. </dt><dd class='enumerate-enumitem'>Only the client’s concealed count rises while the server’s counts are zero? Replies
+     are delayed on their way back, or the server stalls briefly. Raise D by one.</dd></dl>
+<!-- l. 58 --><p class='indent'>  If clicks persist, enable <span class='ec-lmss-10x-x-109'>Log transport events </span>in the <span class='ec-lmss-10x-x-109'>Settings </span>tab, reproduce the problem,
+and keep <span class='ec-lmtt-10x-x-109'>fxmenet-client-events.log </span>and the server’s log together for the
+report.
+</p><!-- l. 62 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>10.5</span>  <a id='x13-7300010.5'></a>Silence at start, stop or jump</h3>
+<!-- l. 64 --><p class='noindent'>This is the <span class='ec-lmss-10x-x-109'>Silence in-flight audio at reset </span>option of the <span class='ec-lmss-10x-x-109'>Settings </span>tab doing its job: for the
+length of the latency after a restart, nothing is heard from the plugin, as with a local
+plugin whose delay line is cleared. Turn the option off to hear what was still in
+flight.
+</p><!-- l. 69 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>10.6</span>  <a id='x13-7400010.6'></a>The audio is late compared with other tracks</h3>
+<!-- l. 71 --><p class='noindent'>The DAW compensates for the latency that FxmeNet reports. If a track is still late, check
+that the DAW’s plugin delay compensation is on and that the DAW applies it to this
+track.
+</p><!-- l. 75 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>10.7</span>  <a id='x13-7500010.7'></a>Everything stops when the server restarts</h3>
+<!-- l. 77 --><p class='noindent'>The plugin reconnects by itself and rebuilds the chain on the server. If the server does not
+have the same plugins any more, the affected plugins show an error in the chain. While the
+server is away, the sound becomes dry at once; when the server is back, the processed
+sound returns. Restarting the server during playback was tested, without audible
+glitches.
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+</p>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch11.html'>next</a>] [<a href='indexch9.html'>prev</a>] [<a href='indexch9.html#tailindexch9.html'>prev-tail</a>] [<a href='indexch10.html'>front</a>] [<a href='index.html#indexch10.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>  <a id='tailindexch10.html'></a>  </p> 
+</body> 
+</html>

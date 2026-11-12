@@ -1,0 +1,171 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>2 Quick start</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='index.css' rel='stylesheet' type='text/css' /> 
+<meta content='index.tex' name='src' /> 
+<link href='fxmenet.css' rel='stylesheet' type='text/css' /> 
+<meta content='width=device-width, initial-scale=1' name='viewport' /> 
+</head><body>
+  <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch3.html'>next</a>] [<a href='indexch1.html'>prev</a>] [<a href='indexch1.html#tailindexch1.html'>prev-tail</a>] [<a href='#tailindexch2.html'>tail</a>] [<a href='index.html#indexch2.html'>up</a>] </p></div>
+  <h2 class='chapterHead'><span class='titlemark'>2</span>  <a id='x5-100002'></a>Quick start</h2>
+<!-- l. 4 --><p class='noindent'>This chapter takes you from nothing to audio going through a plugin on the server, in about
+ten minutes.
+</p>
+  <div class='sectionTOCS'>
+  <span class='sectionToc'>2.1  <a href='#x5-110002.1'>Get the software</a></span>
+<br />  <span class='subsectionToc'>2.1.1  <a href='#x5-120002.1.1'>Building from source</a></span>
+<br />  <span class='sectionToc'>2.2  <a href='#x5-130002.2'>Install the plugins on the server</a></span>
+<br />  <span class='sectionToc'>2.3  <a href='#x5-140002.3'>Start the server</a></span>
+<br />  <span class='sectionToc'>2.4  <a href='#x5-150002.4'>Install the plugin on the client</a></span>
+<br />  <span class='sectionToc'>2.5  <a href='#x5-160002.5'>Your first chain</a></span>
+<br />  <span class='sectionToc'>2.6  <a href='#x5-170002.6'>Where to go next</a></span>
+  </div>
+  <h3 class='sectionHead'><span class='titlemark'>2.1</span>  <a id='x5-110002.1'></a>Get the software</h3>
+<!-- l. 10 --><p class='noindent'>Download the files for your system from the <span class='ec-lmri-10x-x-109'>Releases </span>page of the project on GitHub, 
+<a class='url' href='https://github.com/odoare/FxmeNet/releases'><span class='ec-lmtt-10x-x-109'>https://github.com/odoare/FxmeNet/releases</span></a>. Each release offers an installer and, for
+those who prefer to copy files by hand, a plain archive with the same content. Install the server
+on the computer that runs the effects, and the plugin on the computer that runs the DAW
+(they can be the same computer). The installers let you choose.
+     </p><dl class='description'><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>Windows</span> </dt><dd class='description'>
+     <!-- l. 18 --><p class='noindent'>Run <span class='ec-lmtt-10x-x-109'>FxmeNet-X.Y.Z-Windows-Setup.exe </span>and choose <span class='ec-lmss-10x-x-109'>Plugin only</span>, <span class='ec-lmss-10x-x-109'>Server only</span>
+     or  both.  The  plugin  goes  to  <span class='ec-lmtt-10x-x-109'>C:\Program Files\Common Files\VST3</span>,  and
+     the server and <span class='ec-lmtt-10x-x-109'>fxmenet-top </span>to <span class='ec-lmtt-10x-x-109'>C:\Program Files\FxmeNet</span>, with a Start
+     menu entry for this manual. Two options are offered: adding the folder to the
+     <span class='ec-lmtt-10x-x-109'>PATH</span>, and allowing the server through the Windows firewall (UDP 54320 and
+     54321, TCP 54322). The installer is not signed, so Windows may show a warning
+     on first run (choose <span class='ec-lmss-10x-x-109'>More info</span>, then <span class='ec-lmss-10x-x-109'>Run anyway</span>). Without the installer, unzip <span class='ec-lmtt-10x-x-109'>FxmeNet-X.Y.Z-Windows-x86_64.zip </span>and copy the files yourself.
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>macOS</span> </dt><dd class='description'>
+     <!-- l. 29 --><p class='noindent'>Open <span class='ec-lmtt-10x-x-109'>FxmeNet-X.Y.Z-macOS.pkg </span>and choose the parts to install: the VST3
+     plugin  (in  <span class='ec-lmtt-10x-x-109'>/Library/Audio/Plug-Ins/VST3</span>),  the  Audio  Unit  (in  <span class='ec-lmtt-10x-x-109'>...
+     /Components</span>), and the server with <span class='ec-lmtt-10x-x-109'>fxmenet-top </span>(in <span class='ec-lmtt-10x-x-109'>/usr/local/bin</span>). The
+     programs are universal (Apple silicon and Intel). The package is not signed or
+     notarized, so macOS may refuse to open it; in that case use <span class='ec-lmss-10x-x-109'>Open Anyway  </span>in
+     <span class='ec-lmss-10x-x-109'>System  Settings</span>,  <span class='ec-lmss-10x-x-109'>Privacy  &amp;  Security</span>.  The  same  files  are  in  <span class='ec-lmtt-10x-x-109'>FxmeNet-X.Y.
+                                                                                
+                                                                                
+     Z-macOS-universal.zip</span>.
+     </p></dd><dt class='description'>
+<span class='ec-lmssbx-10x-x-109'>Linux</span> </dt><dd class='description'>
+     <!-- l. 38 --><p class='noindent'>On Debian and Ubuntu, install <span class='ec-lmtt-10x-x-109'>fxmenet_X.Y.Z_amd64.deb </span>with <span class='ec-lmtt-10x-x-109'>sudo apt
+     install ./fxmenet_*_amd64.deb</span>. It puts the programs in <span class='ec-lmtt-10x-x-109'>/usr/bin</span>, the
+     plugin in <span class='ec-lmtt-10x-x-109'>/usr/lib/vst3</span>, and an example <span class='ec-lmtt-10x-x-109'>systemd </span>unit in <span class='ec-lmtt-10x-x-109'>/usr/share/
+     doc/fxmenet</span>. On other distributions, unpack <span class='ec-lmtt-10x-x-109'>FxmeNet-X.Y.Z-Linux-x86_64.
+     tar.gz </span>and run <span class='ec-lmtt-10x-x-109'>./install.sh </span>(for your user: <span class='ec-lmtt-10x-x-109'>~/.local/bin </span>and <span class='ec-lmtt-10x-x-109'>~/.vst3</span>)
+     or <span class='ec-lmtt-10x-x-109'>sudo ./install.sh --system </span>(<span class='ec-lmtt-10x-x-109'>/usr/local/bin </span>and <span class='ec-lmtt-10x-x-109'>/usr/lib/vst3</span>).
+     <span class='ec-lmtt-10x-x-109'>./install.sh --uninstall </span>removes them.</p></dd></dl>
+<!-- l. 51 --><p class='indent'>  Every installer also puts the PDF manual next to the programs.
+</p>
+  <div class='callout note'>
+<!-- l. 53 --><p class='indent'>  <span class='ec-lmbx-10x-x-109'>Note.</span>  The installers and archives are new, and not all of them have been tried on every
+system. If one does not work for you, please tell us.
+</p>
+  </div>
+<!-- l. 58 --><p class='noindent'>
+</p>
+  <h4 class='subsectionHead'><span class='titlemark'>2.1.1</span>  <a id='x5-120002.1.1'></a>Building from source</h4>
+<!-- l. 60 --><p class='noindent'>You need a C++17 compiler and CMake 3.22 or newer. JUCE and FxmeTools are downloaded
+at the versions the project pins; if clones named <span class='ec-lmtt-10x-x-109'>JUCE </span>and <span class='ec-lmtt-10x-x-109'>FxmeTools </span>sit next to the
+FxmeNet folder, those are used instead (<span class='ec-lmtt-10x-x-109'>-DFXME_USE_SIBLINGS=OFF </span>forces the pinned
+versions). From the FxmeNet folder:
+</p>
+  <!-- l. 66 -->
+
+ <pre class='lstlisting' id='listing-2'><span class='label'><a id='x5-12001r1'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>cmake</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>-S . -B build</span> 
+</span><span class='label'><a id='x5-12002r2'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>cmake</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>--build build --target FxmeNetServer -j2</span> 
+</span><span class='label'><a id='x5-12003r3'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>cmake</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>--build build --target FxmeNetPlugin_VST3 -j2</span> 
+</span><span class='label'><a id='x5-12004r4'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>cmake</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>--build build --target FxmeNetTop -j2</span></span></pre>
+ 
+<!-- l. 73 --><p class='indent'>  This gives three programs, inside the <span class='ec-lmtt-10x-x-109'>build </span>folder: the server (<span class='ec-lmtt-10x-x-109'>fxmenet-server</span>), the
+plugin (<span class='ec-lmtt-10x-x-109'>FxmeNet.vst3</span>) and the monitoring tool (<span class='ec-lmtt-10x-x-109'>fxmenet-top</span>, chapter <a href='indexch4.html#x7-270004'>4<!-- tex4ht:ref: ch:top  --></a>). Copy them
+where the installers would put them.
+</p><!-- l. 78 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>2.2</span>  <a id='x5-130002.2'></a>Install the plugins on the server</h3>
+                                                                                
+                                                                                
+<!-- l. 80 --><p class='noindent'>The server offers the VST3 effects it finds in its plugin folders: the standard VST3
+folders of the machine (on Linux, typically <span class='ec-lmtt-10x-x-109'>~/.vst3</span>, <span class='ec-lmtt-10x-x-109'>/usr/lib/vst3 </span>and <span class='ec-lmtt-10x-x-109'>/usr/local/lib/vst3</span>), plus any you add (section <a href='indexch3.html#x6-210003.3'>3.3<!-- tex4ht:ref: sec:folders  --></a>). Install the plugins you want to use
+there, the way you would on any computer.
+</p><!-- l. 86 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>2.3</span>  <a id='x5-140002.3'></a>Start the server</h3>
+<!-- l. 88 --><p class='noindent'>On the server machine, in a terminal:
+</p>
+  <!-- l. 90 -->
+
+ <pre class='lstlisting' id='listing-3'><span class='label'><a id='x5-14001r1'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>fxmenet</span></span><span style='color:#000000'><span class='ec-lmtt-10'>-</span></span><span style='color:#000000'><span class='ec-lmtt-10'>server</span></span></pre>
+ 
+<!-- l. 94 --><p class='indent'>  The first time, the server examines every plugin it finds (this can take a minute for a large
+collection) and then logs the list, ending with lines like:
+</p>
+  <!-- l. 97 -->
+
+ <pre class='lstlisting' id='listing-4'><span class='label'><a id='x5-14002r1'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>2026-11-10</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>14:02:11  48 plugins (48 examined, 0 from the cache, 0 failed)</span> 
+</span><span class='label'><a id='x5-14003r2'></a></span><span style='color:#000000'><span class='ec-lmtt-10'>2026-11-10</span></span><span style='color:#000000'> <span class='ec-lmtt-10'>14:02:11  listening: control TCP 54322, audio UDP 54321, discovery UDP 54320</span></span></pre>
+ 
+<!-- l. 102 --><p class='indent'>  Later starts are quick, because only new or changed plugins are examined again. Leave the
+server running. Stop it with <span class='fbox'><span class='ec-lmtt-10x-x-109'>Ctrl</span></span>+<span class='fbox'><span class='ec-lmtt-10x-x-109'>C</span></span>.
+</p>
+  <div class='callout note'>
+<!-- l. 105 --><p class='indent'>  <span class='ec-lmbx-10x-x-109'>Note.</span>  Your computers’ firewall must let the three ports through on the local network
+(chapter <a href='indexch12.html#x15-8100012'>12<!-- tex4ht:ref: ch:network  --></a>). Under Ubuntu’s <span class='ec-lmtt-10x-x-109'>ufw</span>, for example, allow 54320 to 54322.
+</p>
+  </div>
+<!-- l. 111 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>2.4</span>  <a id='x5-150002.4'></a>Install the plugin on the client</h3>
+<!-- l. 113 --><p class='noindent'>If you used an installer, the plugin is already in place; otherwise copy <span class='ec-lmtt-10x-x-109'>FxmeNet.vst3 </span>to
+your VST3 folder (section <a href='#x5-110002.1'>2.1<!-- tex4ht:ref: sec:download  --></a>). Then let your DAW rescan its plugins.
+</p><!-- l. 117 --><p class='indent'>  On macOS the plugin is also built as an Audio Unit. The AU is not notarized, so macOS
+may refuse to load it at first; the <span class='ec-lmtt-10x-x-109'>README </span>on the project’s GitHub page explains what to do.
+The AU has not been tested yet, and feedback is welcome.
+                                                                                
+                                                                                
+</p><!-- l. 122 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>2.5</span>  <a id='x5-160002.5'></a>Your first chain</h3>
+<!-- l. 125 --><p class='noindent'>
+     </p><dl class='enumerate-enumitem'><dt class='enumerate-enumitem'>
+   1. </dt><dd class='enumerate-enumitem'>In the DAW, add <span class='ec-lmss-10x-x-109'>FxmeNet </span>to a track, as an effect.
+     </dd><dt class='enumerate-enumitem'>
+   2. </dt><dd class='enumerate-enumitem'>Click <span class='ec-lmss-10x-x-109'>Find</span>. The server answers on the local network; choose it in the list. (If it does
+     not appear, type its address in the field, for example <span class='ec-lmtt-10x-x-109'>192.168.1.20</span>.)
+     </dd><dt class='enumerate-enumitem'>
+   3. </dt><dd class='enumerate-enumitem'>Click <span class='ec-lmss-10x-x-109'>Connect</span>. The status line next to the button says when the session is ready.
+     </dd><dt class='enumerate-enumitem'>
+   4. </dt><dd class='enumerate-enumitem'>The list <span class='ec-lmss-10x-x-109'>SERVER PLUGINS </span>shows what the server offers. Type a few letters of a
+     plugin’s name in the <span class='ec-lmss-10x-x-109'>Filter </span>field, and press <span class='fbox'><span class='ec-lmtt-10x-x-109'>Return</span></span> (or double-click a plugin) to add
+     it to the chain.
+     </dd><dt class='enumerate-enumitem'>
+   5. </dt><dd class='enumerate-enumitem'>Play.  The  audio  goes  through  the  server.  The  plugin’s  controls  appear  in  the
+     right-hand  panel;  its  parameters  are  also  listed  in  the  DAW  as  automation
+     parameters.</dd></dl>
+<!-- l. 139 --><p class='noindent'>The line at the bottom of the editor shows the latency that FxmeNet reports to the DAW and
+the count of concealed blocks. On a healthy network the count stays at zero, or
+nearly.
+</p>
+  <div class='callout tip'>
+<!-- l. 143 --><p class='indent'>  <span class='ec-lmbx-10x-x-109'>Tip.</span>  To see what the server is doing, open <span class='ec-lmtt-10x-x-109'>fxmenet-top </span>in a terminal on the server
+(chapter <a href='indexch4.html#x7-270004'>4<!-- tex4ht:ref: ch:top  --></a>). It shows each session, the server’s load and the traffic.
+</p>
+  </div>
+<!-- l. 149 --><p class='noindent'>
+</p>
+  <h3 class='sectionHead'><span class='titlemark'>2.6</span>  <a id='x5-170002.6'></a>Where to go next</h3>
+     <ul class='itemize1'>
+     <li class='itemize'>Choosing the block size and budget, and making the server reliable: chapter <a href='indexch7.html#x10-520007'>7<!-- tex4ht:ref: ch:performance  --></a>.
+                                                                                
+                                                                                
+     </li>
+     <li class='itemize'>Parallel chains, sidechains and multichannel plugins: chapter <a href='indexch6.html#x9-450006'>6<!-- tex4ht:ref: ch:routing  --></a>.
+     </li>
+     <li class='itemize'>Something does not work: chapter <a href='indexch10.html#x13-6800010'>10<!-- tex4ht:ref: ch:troubleshooting  --></a>.</li></ul>
+<!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='indexch3.html'>next</a>] [<a href='indexch1.html'>prev</a>] [<a href='indexch1.html#tailindexch1.html'>prev-tail</a>] [<a href='indexch2.html'>front</a>] [<a href='index.html#indexch2.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>  <a id='tailindexch2.html'></a>  </p> 
+</body> 
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FxmeNet / FX-Mechanics</title>
+    <meta name="description" content="FxmeNet lets your DAW run its effect plugins on another computer over your local network." />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="player-bar">
+        <div class="player-bar-inner">
+          <button class="player-btn prev" type="button" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6l-8.5 6 8.5 6V6zM6 6h2v12H6z"/></svg>
+          </button>
+          <button class="player-btn play" type="button" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <button class="player-btn next" type="button" aria-label="Next track">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6l8.5 6L6 18V6zM16 6h2v12h-2z"/></svg>
+          </button>
+          <a class="player-meta" href="music.html">
+            <div class="track">Reboot</div>
+            <div class="artist">Y'n'N / H2O2</div>
+          </a>
+          <div class="player-scrub">
+            <span class="player-time cur">0:00</span>
+            <input type="range" class="player-range" min="0" max="100" value="0" step="0.1" aria-label="Seek" />
+            <span class="player-time end">0:00</span>
+          </div>
+          <a class="player-link" href="music.html">All releases</a>
+          <audio id="fx-audio" preload="none"></audio>
+        </div>
+      </div>
+      <nav class="site-nav">
+        <a href="index.html" class="logo">FX<span class="dot">·</span>Mechanics</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="news.html" class="nav-link">News</a></li>
+          <li class="nav-dropdown">
+            <a href="plugins.html" class="nav-link">Plugins</a>
+            <div class="nav-dropdown-panel">
+              <a href="plugins.html#effects"><span class="swatch" style="background:var(--cyan)"></span>Effects</a>
+              <a href="plugins.html#synths"><span class="swatch" style="background:var(--accent)"></span>Synths</a>
+              <a href="plugins.html#tools"><span class="swatch" style="background:var(--blue-strong)"></span>Tools</a>
+              <a href="plugins.html#archived"><span class="swatch" style="background:var(--text-faint)"></span>Old / Archived</a>
+            </div>
+          </li>
+          <li><a href="fxmenet.html" class="nav-link active">FxmeNet</a></li>
+          <li><a href="supermoto.html" class="nav-link">SuperMoTo</a></li>
+          <li><a href="music.html" class="nav-link">Music</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <a class="nav-social" href="https://www.facebook.com/profile.php?id=61591805556607" target="_blank" rel="noopener"
+           aria-label="Follow FX-Mechanics on Facebook" title="Follow on Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section" style="padding-top: 56px;">
+        <div class="container">
+
+          <div class="tool-header">
+            <div class="eyebrow">Distributed audio processing</div>
+            <h1 class="section-title">FxmeNet</h1>
+            <p class="section-lede">
+              FxmeNet lets your DAW run its effects on another computer. In the DAW you insert one plugin,
+              <strong>FxmeNet</strong> (VST3, AU on macOS). Behind it, a chain of VST3 effects runs on a
+              <strong>server</strong> (<code>fxmenet-server</code>) on the same local network. The audio goes to
+              the server and comes back; the DAW sees one ordinary plugin and compensates the latency it reports.
+            </p>
+
+            <div class="tool-links">
+              <a href="fxme-net-manual/html/index.html" class="btn btn-primary" target="_blank" rel="noopener" data-no-router>
+                HTML manual &rarr;
+              </a>
+              <a href="fxme-net-manual/fxmenet-manual.pdf" class="btn" target="_blank" rel="noopener">
+                PDF manual
+              </a>
+              <a href="https://github.com/odoare/FxmeNet" class="btn" target="_blank" rel="noopener">
+                Info on github
+              </a>
+              <a href="https://github.com/odoare/FxmeNet/releases" class="btn" target="_blank" rel="noopener">
+                Download
+              </a>
+            </div>
+          </div>
+
+          <div class="tool-media">
+            <a href="img/fxme-net-routing-screen.png" target="_blank">
+              <img src="img/fxme-net-routing-screen.png" alt="FxmeNet plugin: server plugin list, chain, and routing" loading="lazy" />
+            </a>
+            <div class="tool-media-caption">
+              The FxmeNet plugin in a DAW: the server's plugin list, the chain, and the routing between the plugins.
+            </div>
+          </div>
+
+          <div class="text-section">
+            <h2>Why FxmeNet exists</h2>
+            <p>
+              Reaper once offered something similar directly in its distribution (ReaMote). It was removed, and I missed it.
+            </p>
+            <p>
+              The AudioGridder project exists and is a fine one, but it has a different philosophy. I needed something
+              that does not have to send video streams of the plugin windows over the network: FxmeNet opens each plugin's
+              own editor on the client instead, and only audio and control data travel.
+            </p>
+            <p>
+              Commercial companies such as Waves or UAD offer ways to run effects on dedicated DSP hardware. FxmeNet offers
+              something similar for the open-source world, using simple computers over standard Ethernet.
+            </p>
+
+            <h2>What it does</h2>
+            <ul>
+              <li><strong>Native editors:</strong> If a plugin is installed on the client too, its own editor opens locally and stays in step with the server's copy. Plugins made for FxmeNet also show their real meters and analysers. Others get a generic panel of sliders.</li>
+              <li><strong>Chains and routing:</strong> Each plugin instance in the DAW is one session on the server, with its own chain, a routing patchbay and latency compensation.</li>
+              <li><strong>Latency against reliability:</strong> Audio travels in blocks of <em>N</em> samples (32 to 1024) over UDP, and each reply has <em>D</em> blocks (1 to 8) to come back. A late block is concealed with a short fade. The added latency is about <em>N</em> &times; <em>D</em> samples.</li>
+              <li><strong>Monitoring:</strong> <code>fxmenet-top</code> is a terminal program that shows sessions, CPU, network and the server log, and manages the server's plugin folders (Linux, macOS and Windows).</li>
+            </ul>
+
+            <div class="notice" style="margin: 20px 0;">
+              <div>
+                <strong>Please note:</strong><br />
+                &bull; Even if the added latency stays small, this system is not for live playing. Expect a few milliseconds at best. It is however well suited for mixing and production.<br />
+                &bull; This is designed for a local network you control: traffic is not encrypted.<br />
+                &bull; For now the server hosts VST3 effects, not instruments.
+              </div>
+            </div>
+
+            <h2>Server monitoring</h2>
+            <p>
+              <code>fxmenet-top</code> runs in a terminal and monitors the server: active sessions, client addresses,
+              CPU load, round-trip packet timing, and server logs.
+            </p>
+          </div>
+
+          <div class="tool-media" style="max-width: 54rem;">
+            <a href="img/fxme-net-top.png" target="_blank">
+              <img src="img/fxme-net-top.png" alt="fxmenet-top terminal interface" loading="lazy" />
+            </a>
+            <div class="tool-media-caption">
+              The fxmenet-top terminal utility.
+            </div>
+          </div>
+
+          <div class="text-section">
+            <h2>Plugins made for FxmeNet</h2>
+            <p>
+              Plugins made with FxmeNet in mind transmit their monitoring data (meters, oscilloscopes, spectrum displays)
+              over the control channel so the local interface draws them accurately:
+            </p>
+            <ul>
+              <li><a href="plugins.html#effects">FxmeFX</a>: A series of 19 plugins (compressor, equalizer, tube, transient shaper, delays, reverbs, cabinet, limiter, gate, de-esser, neural amp modeller, chorus, flanger, phaser).</li>
+              <li><a href="https://github.com/odoare/AmbiRR2" target="_blank" rel="noopener">AmbiRR2</a>: A virtual room simulator with up to 16 virtual sources in space.</li>
+              <li><a href="https://github.com/odoare/StairwellToHeaven" target="_blank" rel="noopener">Stairwell to Heaven</a>: A reverberation with shimmer features (coming soon).</li>
+            </ul>
+            <p>
+              Standard VST3 plugins that do not draw custom monitoring displays, or that use standard plugin parameters
+              for metering, also work well.
+            </p>
+
+            <h2>Downloads</h2>
+            <p>
+              Installers and archives are on the <a href="https://github.com/odoare/FxmeNet/releases" target="_blank" rel="noopener">GitHub releases page</a>:
+            </p>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>System</th>
+                  <th>Installer</th>
+                  <th>Without installer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Windows</td>
+                  <td><code>FxmeNet-Setup.exe</code></td>
+                  <td><code>FxmeNet-Windows-x86_64.zip</code></td>
+                </tr>
+                <tr>
+                  <td>macOS</td>
+                  <td><code>FxmeNet-macOS.pkg</code></td>
+                  <td><code>FxmeNet-macOS-universal.zip</code></td>
+                </tr>
+                <tr>
+                  <td>Linux</td>
+                  <td><code>fxmenet_amd64.deb</code></td>
+                  <td><code>FxmeNet-Linux-x86_64.tar.gz</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="text-section" style="margin-top: 48px;">
+            <h2>User manual</h2>
+            <p>
+              The manual is available as a <a href="fxme-net-manual/fxmenet-manual.pdf" target="_blank">PDF</a> or can be read online in HTML:
+            </p>
+          </div>
+
+          <div class="doc-frame-container">
+            <div class="doc-frame-header">
+              <span class="doc-frame-title">FxmeNet User Manual (HTML)</span>
+              <div>
+                <a href="fxme-net-manual/html/index.html" class="btn btn-sm" target="_blank" rel="noopener" data-no-router>
+                  Open in a new tab &rarr;
+                </a>
+              </div>
+            </div>
+            <iframe class="doc-frame" src="fxme-net-manual/html/index.html" title="FxmeNet User Manual" loading="lazy"></iframe>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        &copy; 2026 FX-Mechanics &bull; Free software under AGPL-3.0
+      </div>
+    </footer>
+
+    <script src="js/player.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <!-- GoatCounter: cookieless, privacy-friendly stats. -->
+    <script data-goatcounter="https://fx-mechanics.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </body>
+</html>
