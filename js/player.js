@@ -58,6 +58,61 @@
   function setPlayingUI(playing) {
     playBtn.classList.toggle("is-playing", playing);
     playBtn.setAttribute("aria-label", playing ? "Pause" : "Play");
+    document.body.classList.toggle("is-playing", playing);
+    if (playing) startMeter();
+  }
+
+  // ----- L/R level meter in the top bar -----
+  // The Web Audio graph is built on the first click of Play (a user gesture),
+  // never on an autoplay resume: a MediaElementSource routes the <audio>
+  // through the AudioContext, and a context the browser left suspended would
+  // silence the music. Without a graph the meter simply stays at rest.
+  const meterFills = document.querySelectorAll(".player-meter .meter-fill");
+  let analysers = null;
+  let meterRaf = 0;
+
+  function buildGraph() {
+    if (analysers || !window.AudioContext || !meterFills.length) return;
+    try {
+      const ctx = new AudioContext();
+      const src = ctx.createMediaElementSource(audio);
+      const split = ctx.createChannelSplitter(2);
+      analysers = [ctx.createAnalyser(), ctx.createAnalyser()];
+      src.connect(ctx.destination);
+      src.connect(split);
+      analysers.forEach((a, i) => {
+        a.fftSize = 1024;
+        split.connect(a, i);
+      });
+      analysers.ctx = ctx;
+      analysers.buf = new Float32Array(1024);
+      analysers.level = [0, 0];
+    } catch (e) {
+      analysers = null;
+    }
+  }
+
+  function startMeter() {
+    if (!analysers || meterRaf) return;
+    const tick = () => {
+      analysers.forEach((a, i) => {
+        a.getFloatTimeDomainData(analysers.buf);
+        let peak = 0;
+        for (let k = 0; k < analysers.buf.length; k++) peak = Math.max(peak, Math.abs(analysers.buf[k]));
+        const db = peak > 0 ? 20 * Math.log10(peak) : -60;
+        const target = Math.max(0, Math.min(1, (db + 48) / 48)); // -48..0 dBFS
+        // fast attack, slow release, like the plugins' meters
+        const prev = analysers.level[i];
+        analysers.level[i] = target > prev ? target : prev * 0.92 + target * 0.08;
+        meterFills[i].style.transform = "scaleX(" + analysers.level[i].toFixed(3) + ")";
+      });
+      if (audio.paused && analysers.level[0] < 0.01 && analysers.level[1] < 0.01) {
+        meterRaf = 0;
+        return;
+      }
+      meterRaf = requestAnimationFrame(tick);
+    };
+    meterRaf = requestAnimationFrame(tick);
   }
 
   function loadTrack(i, { autoplay = false, resumeTime = 0 } = {}) {
@@ -103,6 +158,8 @@
   }
 
   playBtn.addEventListener("click", () => {
+    buildGraph();
+    if (analysers && analysers.ctx.state === "suspended") analysers.ctx.resume();
     if (audio.paused) audio.play().catch(() => {});
     else audio.pause();
   });
