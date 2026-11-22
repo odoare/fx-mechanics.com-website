@@ -78,7 +78,7 @@
             </div>
             <p class="section-lede">
               FxmeNet lets your DAW run its effects on another computer. In the DAW you insert one plugin,
-              <strong>FxmeNet</strong> (VST3, AU on macOS). Behind it, a chain of VST3 effects runs on a
+              <strong>FxmeNet</strong> (VST3, AU on macOS). Behind it, a chain of VST3 effects and JSFX scripts runs on a
               <strong>server</strong> (<code>fxmenet-server</code>) on the same local network. The audio goes to
               the server and comes back; the DAW sees one ordinary plugin and compensates the latency it reports.
             </p>
@@ -126,7 +126,7 @@
             <h2>What it does</h2>
             <ul>
               <li><strong>Native editors:</strong> If a plugin is installed on the client too, its own editor opens locally and stays in step with the server's copy. Plugins made for FxmeNet also show their real meters and analysers. Others get a generic panel of sliders.</li>
-              <li><strong>Chains and routing:</strong> Each plugin instance in the DAW is one session on the server, with its own chain, a routing patchbay and latency compensation.</li>
+              <li><strong>Chains and routing:</strong> Each plugin instance in the DAW is one session on the server, with its own chain of VST3 plugins and JSFX scripts, a routing patchbay and latency compensation.</li>
               <li><strong>Latency against reliability:</strong> Audio travels in blocks of <em>N</em> samples (32 to 1024) over UDP, and each reply has <em>D</em> blocks (1 to 8) to come back. A late block is concealed with a short fade. The added latency is about <em>N</em> &times; <em>D</em> samples.</li>
               <li><strong>Monitoring:</strong> <code>fxmenet-top</code> is a terminal program that shows sessions, CPU, network and the server log, and manages the server's plugin folders (Linux, macOS and Windows).</li>
             </ul>
@@ -136,7 +136,7 @@
                 <strong>Please note:</strong><br />
                 &bull; Even if the added latency stays small, this system is not for live playing. Expect a few milliseconds at best. It is however well suited for mixing and production.<br />
                 &bull; This is designed for a local network you control: traffic is not encrypted.<br />
-                &bull; For now the server hosts VST3 effects, not instruments.
+                &bull; The server hosts VST3 effects and JSFX scripts, not instruments.
               </div>
             </div>
 
@@ -164,8 +164,8 @@
             </p>
             <ul>
               <li><a href="plugins.html#effects">FxmeFX</a>: A series of 19 plugins (compressor, equalizer, tube, transient shaper, delays, reverbs, cabinet, limiter, gate, de-esser, neural amp modeller, chorus, flanger, phaser).</li>
+              <li><a href="plugins.html#effects">Stairwell to Heaven</a>: An algorithmic stereo reverb with figure-eight tank and shimmer features (<a href="https://github.com/odoare/StairwellToHeaven" target="_blank" rel="noopener">GitHub</a>).</li>
               <li><a href="https://github.com/odoare/AmbiRR2" target="_blank" rel="noopener">AmbiRR2</a>: A virtual room simulator with up to 16 virtual sources in space.</li>
-              <li><a href="https://github.com/odoare/StairwellToHeaven" target="_blank" rel="noopener">Stairwell to Heaven</a>: A reverberation with shimmer features (coming soon).</li>
             </ul>
             <p>
               Standard VST3 plugins that do not draw custom monitoring displays, or that use standard plugin parameters
